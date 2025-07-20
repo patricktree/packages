@@ -3,6 +3,7 @@
     { "path": "./packages/codemod-rewrite-module-specifiers-to-full-paths/tsconfig.project.json" },
     { "path": "./packages/commons-ecma/tsconfig.project.json" },
     { "path": "./packages/commons-node/tsconfig.project.json" },
+    { "path": "./packages/crowd-lense/tsconfig.project.json" },
     { "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.project.json" },
     { "path": "./packages/fetch-favicon/tsconfig.project.json" },
     { "path": "./packages/fetch-sitemap-locations/tsconfig.project.json" },

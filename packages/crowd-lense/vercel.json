@@ -1,0 +1,12 @@
+{
+  "build": {
+    "env": {
+      "PRISMA_GENERATE_DATAPROXY": "true"
+    }
+  },
+  "functions": {
+    "src/app/api/**": {
+      "maxDuration": 30
+    }
+  }
+}
