@@ -1,4 +1,4 @@
-# `@pkerschbaum/typescript-eslint-rules-requiring-type-info`
+# `@patricktree/typescript-eslint-rules-requiring-type-info`
 
 ## Problem
 
@@ -26,7 +26,7 @@ This package exposes two functions to help accomplish this idea:
 1. Install the package:
 
    ```sh
-   npm i --save-dev @pkerschbaum/typescript-eslint-rules-requiring-type-info
+   npm i --save-dev @patricktree/typescript-eslint-rules-requiring-type-info
    ```
 
 2. Run `fetchAndStoreRules` on a regular basis. You can run it using `node` in `postinstall` script of your `package.json`:
@@ -34,7 +34,7 @@ This package exposes two functions to help accomplish this idea:
    ```json
    {
      "scripts": {
-       "postinstall": "node --input-type=module -e 'import { fetchAndStoreRules } from \"@pkerschbaum/typescript-eslint-rules-requiring-type-info\"; void fetchAndStoreRules();'"
+       "postinstall": "node --input-type=module -e 'import { fetchAndStoreRules } from \"@patricktree/typescript-eslint-rules-requiring-type-info\"; void fetchAndStoreRules();'"
      }
    }
    ```
@@ -44,7 +44,7 @@ This package exposes two functions to help accomplish this idea:
    ```js
    const {
      removeTypeInfoRules,
-   } = require('@pkerschbaum/typescript-eslint-rules-requiring-type-info');
+   } = require('@patricktree/typescript-eslint-rules-requiring-type-info');
 
    const applyHeavyRules = process.env.APPLY_HEAVY_RULES === 'true';
 

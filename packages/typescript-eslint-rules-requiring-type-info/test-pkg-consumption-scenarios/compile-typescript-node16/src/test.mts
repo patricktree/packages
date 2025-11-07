@@ -1,4 +1,4 @@
-import { removeTypeInfoRules } from '@pkerschbaum/typescript-eslint-rules-requiring-type-info';
+import { removeTypeInfoRules } from '@patricktree/typescript-eslint-rules-requiring-type-info';
 
 if (typeof removeTypeInfoRules !== 'function') {
   throw new Error(

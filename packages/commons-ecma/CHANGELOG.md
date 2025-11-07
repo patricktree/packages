@@ -1,4 +1,4 @@
-# @pkerschbaum/commons-ecma
+# @patricktree/commons-ecma
 
 ## 2.4.1
 
@@ -53,4 +53,4 @@
 
 ### Major Changes
 
-- initial version (extracted from https://github.com/pkerschbaum/pkerschbaum-homepage)
+- initial version (extracted from https://github.com/patricktree/patricktree-homepage)

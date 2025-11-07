@@ -1,5 +1,5 @@
 // @ts-check
-const baseEslintConfig = require('@pkerschbaum/config-eslint/eslint-ecma.cjs');
+const baseEslintConfig = require('@patricktree/config-eslint/eslint-ecma.cjs');
 
 module.exports = {
   ...baseEslintConfig,

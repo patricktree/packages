@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { $ } from 'zx';
 
-import { check } from '@pkerschbaum/commons-ecma/util/assert';
-import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
+import { check } from '@patricktree/commons-ecma/util/assert';
+import { fsUtils } from '@patricktree/commons-node/utils/fs';
 
 const program = new commander.Command()
   .addOption(new commander.Option('--monorepo-path <path>').makeOptionMandatory())

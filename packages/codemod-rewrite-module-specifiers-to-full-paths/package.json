@@ -1,13 +1,13 @@
 {
-  "name": "@pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths",
+  "name": "@patricktree/codemod-rewrite-module-specifiers-to-full-paths",
   "version": "1.0.1",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/codemod-rewrite-module-specifiers-to-full-paths",
+  "homepage": "https://github.com/patricktree/packages/tree/main/packages/codemod-rewrite-module-specifiers-to-full-paths",
   "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
+    "url": "https://github.com/patricktree/packages/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pkerschbaum/packages",
+    "url": "https://github.com/patricktree/packages",
     "directory": "packages/codemod-rewrite-module-specifiers-to-full-paths"
   },
   "license": "MIT",
@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
-    "@pkerschbaum/commons-ecma": "workspace:*",
-    "@pkerschbaum/commons-node": "workspace:*",
+    "@patricktree/commons-ecma": "workspace:*",
+    "@patricktree/commons-node": "workspace:*",
     "commander": "^12.1.0",
     "jscodeshift": "^17.0.0",
     "p-limit": "^6.1.0",
@@ -50,7 +50,7 @@
     "typescript": "^5.8.2"
   },
   "devDependencies": {
-    "@pkerschbaum/runtime-extensions-node": "workspace:*",
+    "@patricktree/runtime-extensions-node": "workspace:*",
     "@types/jscodeshift": "^0.11.11",
     "@types/node": "^20",
     "@vitest/coverage-v8": "^2.0.5",

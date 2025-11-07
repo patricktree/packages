@@ -1,4 +1,4 @@
-# pkerschbaum OSS <!-- omit in toc -->
+# patricktree OSS <!-- omit in toc -->
 
 - [Development](#development)
   - [Prerequisites](#prerequisites)

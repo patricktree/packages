@@ -1,13 +1,13 @@
 {
-  "name": "@pkerschbaum/pkg-consumption-test",
+  "name": "@patricktree/pkg-consumption-test",
   "version": "1.0.3",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-consumption-test",
+  "homepage": "https://github.com/patricktree/packages/tree/main/packages/pkg-consumption-test",
   "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
+    "url": "https://github.com/patricktree/packages/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pkerschbaum/packages",
+    "url": "https://github.com/patricktree/packages",
     "directory": "packages/pkg-consumption-test"
   },
   "license": "MIT",
@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
-    "@pkerschbaum/commons-ecma": "workspace:^",
-    "@pkerschbaum/commons-node": "workspace:^",
+    "@patricktree/commons-ecma": "workspace:^",
+    "@patricktree/commons-node": "workspace:^",
     "commander": "^12.1.0",
     "pathe": "^1.1.2",
     "verdaccio": "^5.32.1",

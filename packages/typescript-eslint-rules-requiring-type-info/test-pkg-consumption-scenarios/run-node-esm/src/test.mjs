@@ -1,4 +1,4 @@
-import { removeTypeInfoRules } from '@pkerschbaum/typescript-eslint-rules-requiring-type-info';
+import { removeTypeInfoRules } from '@patricktree/typescript-eslint-rules-requiring-type-info';
 import assert from 'node:assert/strict';
 
 const testEslintConfig = {

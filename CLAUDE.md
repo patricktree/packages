@@ -4,7 +4,7 @@ This document provides essential information about the `packages-private` reposi
 
 ## Repository Overview
 
-This is a **TypeScript monorepo** managed with **pnpm workspaces** and **Turbo**. It contains various utility packages, tools, and libraries created by Patrick Kerschbaum (@pkerschbaum).
+This is a **TypeScript monorepo** managed with **pnpm workspaces** and **Turbo**. It contains various utility packages, tools, and libraries created by Patrick Kerschbaum (@patricktree).
 
 ### Key Technologies
 
@@ -113,7 +113,7 @@ The root `tsconfig.json` contains references to all packages for TypeScript proj
 
 - Packages under `packages/` are published to npm
 - Uses Changesets for version management
-- Public packages use `@pkerschbaum/` scope
+- Public packages use `@patricktree/` scope
 
 ## Special Considerations
 
@@ -121,7 +121,7 @@ The root `tsconfig.json` contains references to all packages for TypeScript proj
 
 The repository uses a patched version of TypeScript to support custom transformers. We use the custom transformer (plugin) [`typescript-transform-paths`](https://github.com/LeDDGroup/typescript-transform-paths) in our TypeScript codebase. This enables authoring TypeScript sources with path aliases but during TypeScript compilation, they are replaced by relative paths. That avoids all sorts of difficulties supporting path aliases in Node.js, Next.js, etc.
 
-Such custom transformers (plugins) are not supported by TypeScript out-of-the-box, so we apply [`ts-patch`](https://github.com/nonara/ts-patch) to the `typescript` package. To better incorporate with pnpm (<https://github.com/pnpm/pnpm/issues/6111>) we create a pnpm patch via `ts-patch`, using [`@pkerschbaum/pkg-management`](https://www.npmjs.com/package/@pkerschbaum/pkg-management).
+Such custom transformers (plugins) are not supported by TypeScript out-of-the-box, so we apply [`ts-patch`](https://github.com/nonara/ts-patch) to the `typescript` package. To better incorporate with pnpm (<https://github.com/pnpm/pnpm/issues/6111>) we create a pnpm patch via `ts-patch`, using [`@patricktree/pkg-management`](https://www.npmjs.com/package/@patricktree/pkg-management).
 
 When updating TypeScript to a new version, this procedure is required:
 
@@ -140,7 +140,7 @@ When updating TypeScript to a new version, this procedure is required:
 3. Run:
 
    ```bash
-   pnpm --package="@pkerschbaum/pkg-management@2.1.0" dlx create-pnpm-patch-via-ts-patch \
+   pnpm --package="@patricktree/pkg-management@2.1.0" dlx create-pnpm-patch-via-ts-patch \
       --typescript-version=5.6.3 \ # <-- new version of `typescript` here
       --ts-patch-version=3.3.0 # <-- latest version of `ts-patch` here
    ```

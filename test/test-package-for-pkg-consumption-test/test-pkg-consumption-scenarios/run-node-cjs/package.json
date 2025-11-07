@@ -5,6 +5,6 @@
     "execute-scenario": "node ./src/test.js"
   },
   "dependencies": {
-    "@pkerschbaum/test-package-for-pkg-consumption-test": "*"
+    "@patricktree/test-package-for-pkg-consumption-test": "*"
   }
 }

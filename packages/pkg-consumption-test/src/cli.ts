@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 
-import { check } from '@pkerschbaum/commons-ecma/util/assert';
+import { check } from '@patricktree/commons-ecma/util/assert';
 
 import { startTest } from '#pkg/start-test.js';
 

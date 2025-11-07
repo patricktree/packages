@@ -1,4 +1,4 @@
-# `@pkerschbaum/pkg-management`
+# `@patricktree/pkg-management`
 
 ## Bins
 
@@ -7,5 +7,5 @@
 Workaround for <https://github.com/pnpm/pnpm/issues/6111>:
 
 ```bash
-pnpm --package=\"@pkerschbaum/pkg-management\" dlx create-pnpm-patch-via-ts-patch --typescript-version=5.1.6
+pnpm --package=\"@patricktree/pkg-management\" dlx create-pnpm-patch-via-ts-patch --typescript-version=5.1.6
 ```

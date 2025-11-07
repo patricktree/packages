@@ -1,4 +1,4 @@
-# @pkerschbaum/pkg-management
+# @patricktree/pkg-management
 
 ## 2.1.0
 
@@ -13,8 +13,8 @@
 - f43b99b: chore(deps): bump all deps to latest and apply ESLint fixes
 - Updated dependencies [aff99e2]
 - Updated dependencies [f43b99b]
-  - @pkerschbaum/commons-node@2.2.0
-  - @pkerschbaum/commons-ecma@2.4.1
+  - @patricktree/commons-node@2.2.0
+  - @patricktree/commons-ecma@2.4.1
 
 ## 2.0.0
 
@@ -53,16 +53,16 @@
 ### Patch Changes
 
 - Updated dependencies [defe2b1]
-  - @pkerschbaum/commons-ecma@2.1.2
-  - @pkerschbaum/commons-node@2.1.2
+  - @patricktree/commons-ecma@2.1.2
+  - @patricktree/commons-node@2.1.2
 
 ## 1.0.2
 
 ### Patch Changes
 
 - Updated dependencies [8aa8641]
-  - @pkerschbaum/commons-ecma@2.1.1
-  - @pkerschbaum/commons-node@2.1.1
+  - @patricktree/commons-ecma@2.1.1
+  - @patricktree/commons-node@2.1.1
 
 ## 1.0.1
 
@@ -70,5 +70,5 @@
 
 - Updated dependencies [2ad0473]
 - Updated dependencies [98c3b5e]
-  - @pkerschbaum/commons-node@2.1.0
-  - @pkerschbaum/commons-ecma@2.1.0
+  - @patricktree/commons-node@2.1.0
+  - @patricktree/commons-ecma@2.1.0

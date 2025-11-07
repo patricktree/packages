@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
+import { fsUtils } from '@patricktree/commons-node/utils/fs';
 
 const [VERDACCIO_TEMP_FOLDER, TEMP_FOLDER] = await Promise.all([
   fsUtils.createTemporaryDirectory(),
