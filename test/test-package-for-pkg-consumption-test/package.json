@@ -1,6 +1,7 @@
 {
   "name": "@patricktree/test-package-for-pkg-consumption-test",
   "version": "1.0.0",
+  "private": true,
   "imports": {
     "#pkg/*": "./dist/*"
   },
