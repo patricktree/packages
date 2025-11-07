@@ -1,4 +1,4 @@
-const { removeTypeInfoRules } = require('@pkerschbaum/typescript-eslint-rules-requiring-type-info');
+const { removeTypeInfoRules } = require('@patricktree/typescript-eslint-rules-requiring-type-info');
 const assert = require('node:assert/strict');
 
 const testEslintConfig = {

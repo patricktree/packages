@@ -1,10 +1,10 @@
 {
-  "name": "pkerschbaum",
+  "name": "patricktree",
   "private": true,
   "scripts": {
     "build": "superturbo build",
     "changeset": "changeset",
-    "create-pnpm-patch-via-ts-patch": "pnpm --filter=\"@pkerschbaum/pkg-management\" exec node ./dist/create-pnpm-patch-via-ts-patch.mjs --typescript-version=5.5.4 --ts-patch-version=3.2.1",
+    "create-pnpm-patch-via-ts-patch": "pnpm --filter=\"@patricktree/pkg-management\" exec node ./dist/create-pnpm-patch-via-ts-patch.mjs --typescript-version=5.5.4 --ts-patch-version=3.2.1",
     "format": "prettier --write --ignore-unknown .",
     "lint": "superturbo lint",
     "lint:fix": "superturbo lint:fix",
@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
-    "@pkerschbaum/config-eslint": "workspace:*",
-    "@pkerschbaum/config-typescript": "workspace:*",
+    "@patricktree/config-eslint": "workspace:*",
+    "@patricktree/config-typescript": "workspace:*",
+    "@patricktree/superturbo": "workspace:*",
     "@pkerschbaum/pkg-management": "^2.1.0",
-    "@pkerschbaum/superturbo": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
     "del-cli": "^5.1.0",

@@ -1,4 +1,4 @@
-import { doSomething } from '@pkerschbaum/test-package-for-pkg-consumption-test';
+import { doSomething } from '@patricktree/test-package-for-pkg-consumption-test';
 
 const result = doSomething();
 if (!result === 'some-result') {

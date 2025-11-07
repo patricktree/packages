@@ -1,4 +1,4 @@
-const { doSomething } = require('@pkerschbaum/test-package-for-pkg-consumption-test');
+const { doSomething } = require('@patricktree/test-package-for-pkg-consumption-test');
 
 const result = doSomething();
 if (!result === 'some-result') {

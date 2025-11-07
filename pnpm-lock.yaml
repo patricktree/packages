@@ -16,18 +16,18 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.8
         version: 2.27.8
-      '@pkerschbaum/config-eslint':
+      '@patricktree/config-eslint':
         specifier: workspace:*
         version: link:platform/config-eslint
-      '@pkerschbaum/config-typescript':
+      '@patricktree/config-typescript':
         specifier: workspace:*
         version: link:platform/config-typescript
+      '@patricktree/superturbo':
+        specifier: workspace:*
+        version: link:platform/superturbo
       '@pkerschbaum/pkg-management':
         specifier: ^2.1.0
         version: 2.1.0
-      '@pkerschbaum/superturbo':
-        specifier: workspace:*
-        version: link:platform/superturbo
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.26.1
         version: 8.26.1(@typescript-eslint/parser@8.26.1(eslint@8.57.0)(typescript@5.8.2(patch_hash=6b23bdf663706ba02f3b5b5403e66f959741d27e099fd17fa1ea3a0cc9cbeb92)))(eslint@8.57.0)(typescript@5.8.2(patch_hash=6b23bdf663706ba02f3b5b5403e66f959741d27e099fd17fa1ea3a0cc9cbeb92))
@@ -94,10 +94,10 @@ importers:
       '@commander-js/extra-typings':
         specifier: ^12.1.0
         version: 12.1.0(commander@12.1.0)
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:*
         version: link:../commons-ecma
-      '@pkerschbaum/commons-node':
+      '@patricktree/commons-node':
         specifier: workspace:*
         version: link:../commons-node
       commander:
@@ -116,7 +116,7 @@ importers:
         specifier: ^5.8.2
         version: 5.8.2(patch_hash=6b23bdf663706ba02f3b5b5403e66f959741d27e099fd17fa1ea3a0cc9cbeb92)
     devDependencies:
-      '@pkerschbaum/runtime-extensions-node':
+      '@patricktree/runtime-extensions-node':
         specifier: workspace:*
         version: link:../runtime-extensions-node
       '@types/jscodeshift':
@@ -149,7 +149,7 @@ importers:
 
   packages/commons-node:
     dependencies:
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:^
         version: link:../commons-ecma
     devDependencies:
@@ -172,10 +172,10 @@ importers:
 
   packages/fetch-favicon:
     dependencies:
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:^
         version: link:../commons-ecma
-      '@pkerschbaum/commons-node':
+      '@patricktree/commons-node':
         specifier: workspace:^
         version: link:../commons-node
       tiny-invariant:
@@ -222,13 +222,13 @@ importers:
       '@commander-js/extra-typings':
         specifier: ^14.0.0
         version: 14.0.0(commander@14.0.0)
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:*
         version: link:../commons-ecma
-      '@pkerschbaum/commons-node':
+      '@patricktree/commons-node':
         specifier: workspace:*
         version: link:../commons-node
-      '@pkerschbaum/runtime-extensions-node':
+      '@patricktree/runtime-extensions-node':
         specifier: workspace:*
         version: link:../runtime-extensions-node
       commander:
@@ -244,7 +244,7 @@ importers:
 
   packages/pk-web-stack-codemods:
     dependencies:
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:*
         version: link:../commons-ecma
       '@pnpm/find-workspace-packages':
@@ -281,10 +281,10 @@ importers:
       '@commander-js/extra-typings':
         specifier: ^12.1.0
         version: 12.1.0(commander@12.1.0)
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:^
         version: link:../commons-ecma
-      '@pkerschbaum/commons-node':
+      '@patricktree/commons-node':
         specifier: workspace:^
         version: link:../commons-node
       commander:
@@ -312,10 +312,10 @@ importers:
       '@commander-js/extra-typings':
         specifier: ^12.1.0
         version: 12.1.0(commander@12.1.0)
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: workspace:^
         version: link:../commons-ecma
-      '@pkerschbaum/commons-node':
+      '@patricktree/commons-node':
         specifier: workspace:^
         version: link:../commons-node
       '@pnpm/find-workspace-packages':
@@ -369,7 +369,7 @@ importers:
         specifier: ^25.0.0
         version: 25.0.0
     devDependencies:
-      '@pkerschbaum/pkg-consumption-test':
+      '@patricktree/pkg-consumption-test':
         specifier: workspace:*
         version: link:../pkg-consumption-test
       '@types/eslint':
@@ -394,7 +394,7 @@ importers:
 
   test/test-package-for-pkg-consumption-test:
     devDependencies:
-      '@pkerschbaum/pkg-consumption-test':
+      '@patricktree/pkg-consumption-test':
         specifier: workspace:*
         version: link:../../packages/pkg-consumption-test
 

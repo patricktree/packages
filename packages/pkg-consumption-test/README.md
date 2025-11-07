@@ -1,6 +1,6 @@
-# @pkerschbaum/pkg-consumption-test
+# @patricktree/pkg-consumption-test
 
-[![NPM version](https://img.shields.io/npm/v/@pkerschbaum/pkg-consumption-test?color=a1b858&label=)](https://www.npmjs.com/package/@pkerschbaum/pkg-consumption-test)
+[![NPM version](https://img.shields.io/npm/v/@patricktree/pkg-consumption-test?color=a1b858&label=)](https://www.npmjs.com/package/@patricktree/pkg-consumption-test)
 
 ## Problem
 
@@ -36,7 +36,7 @@ You can see how this tool was added to `tiny-invariant` in this pull request: [g
 First, install the package:
 
 ```sh
-npm add --save-dev @pkerschbaum/pkg-consumption-test
+npm add --save-dev @patricktree/pkg-consumption-test
 ```
 
 Add a package.json script to run the package consumption scenarios:

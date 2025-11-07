@@ -1,5 +1,5 @@
 {
-  "name": "@pkerschbaum/superturbo",
+  "name": "@patricktree/superturbo",
   "private": true,
   "type": "module",
   "bin": {

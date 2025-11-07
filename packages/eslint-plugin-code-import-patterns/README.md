@@ -14,7 +14,7 @@ It can be used to:
 
 Since the rule uses JavaScript regexes for the zones `target` parameters, the rule can currently only be used in ESLint JavaScript configurations (`.eslintrc.js`).
 
-> If you need support for JSON/YAML configurations, feel free to reach out by [creating an issue](https://github.com/pkerschbaum/eslint-plugin-code-import-patterns/issues)!
+> If you need support for JSON/YAML configurations, feel free to reach out by [creating an issue](https://github.com/patricktree/eslint-plugin-code-import-patterns/issues)!
 
 ```javascript
 module.exports = {

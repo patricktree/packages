@@ -1,13 +1,13 @@
 {
-  "name": "@pkerschbaum/pkg-management",
+  "name": "@patricktree/pkg-management",
   "version": "2.1.0",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-management",
+  "homepage": "https://github.com/patricktree/packages/tree/main/packages/pkg-management",
   "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
+    "url": "https://github.com/patricktree/packages/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pkerschbaum/packages",
+    "url": "https://github.com/patricktree/packages",
     "directory": "packages/pkg-management"
   },
   "license": "MIT",
@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
-    "@pkerschbaum/commons-ecma": "workspace:^",
-    "@pkerschbaum/commons-node": "workspace:^",
+    "@patricktree/commons-ecma": "workspace:^",
+    "@patricktree/commons-node": "workspace:^",
     "@pnpm/find-workspace-packages": "^6.0.9",
     "@pnpm/logger": "^5.2.0",
     "commander": "^12.1.0",

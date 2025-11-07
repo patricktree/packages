@@ -1,4 +1,4 @@
-# `@pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths`
+# `@patricktree/codemod-rewrite-module-specifiers-to-full-paths`
 
 Codemod to rewrite module specifiers of TypeScript files to their full paths.
 
@@ -25,7 +25,7 @@ This package is a codemod which consumes a TypeScript configuration file and rew
 ## How to use
 
 ```bash
-npx @pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths --help
+npx @patricktree/codemod-rewrite-module-specifiers-to-full-paths --help
 
 # Usage: codemod [options]
 
@@ -36,5 +36,5 @@ npx @pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths --help
 #   -h, --help                         display help for command
 
 # for example
-npx @pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths --project=./path/to/tsconfig.json
+npx @patricktree/codemod-rewrite-module-specifiers-to-full-paths --project=./path/to/tsconfig.json
 ```

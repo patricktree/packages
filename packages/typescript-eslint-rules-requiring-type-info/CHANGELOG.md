@@ -1,4 +1,4 @@
-# @pkerschbaum/typescript-eslint-rules-requiring-type-info
+# @patricktree/typescript-eslint-rules-requiring-type-info
 
 ## 1.0.2
 

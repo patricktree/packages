@@ -1,2 +1,2 @@
-import '@pkerschbaum/runtime-extensions-node';
+import '@patricktree/runtime-extensions-node';
 import '#pkg/bin/codemod.js';

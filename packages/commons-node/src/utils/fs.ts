@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import { check } from '@pkerschbaum/commons-ecma/util/assert';
+import { check } from '@patricktree/commons-ecma/util/assert';
 
 export const fsUtils = {
   createTemporaryDirectory,

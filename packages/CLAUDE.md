@@ -1,6 +1,6 @@
 # Packages Directory
 
-This directory contains the main packages that are published to npm under the `@pkerschbaum/` scope.
+This directory contains the main packages that are published to npm under the `@patricktree/` scope.
 
 ## Package Categories
 

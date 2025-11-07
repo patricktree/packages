@@ -1,5 +1,5 @@
 {
-  "name": "@pkerschbaum/pk-cli",
+  "name": "@patricktree/pk-cli",
   "private": true,
   "type": "module",
   "exports": {
@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^14.0.0",
-    "@pkerschbaum/commons-ecma": "workspace:*",
-    "@pkerschbaum/commons-node": "workspace:*",
-    "@pkerschbaum/runtime-extensions-node": "workspace:*",
+    "@patricktree/commons-ecma": "workspace:*",
+    "@patricktree/commons-node": "workspace:*",
+    "@patricktree/runtime-extensions-node": "workspace:*",
     "commander": "^14.0.0",
     "tiny-invariant": "^1.3.3"
   },

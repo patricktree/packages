@@ -1,4 +1,4 @@
-# @pkerschbaum/commons-node
+# @patricktree/commons-node
 
 ## 2.2.0
 
@@ -10,7 +10,7 @@
 
 - f43b99b: chore(deps): bump all deps to latest and apply ESLint fixes
 - Updated dependencies [f43b99b]
-  - @pkerschbaum/commons-ecma@2.4.1
+  - @patricktree/commons-ecma@2.4.1
 
 ## 2.1.2
 
@@ -18,14 +18,14 @@
 
 - defe2b1: Revert "refactor: use verbatimModuleSyntax for CJS modules"
 - Updated dependencies [defe2b1]
-  - @pkerschbaum/commons-ecma@2.1.2
+  - @patricktree/commons-ecma@2.1.2
 
 ## 2.1.1
 
 ### Patch Changes
 
 - Updated dependencies [8aa8641]
-  - @pkerschbaum/commons-ecma@2.1.1
+  - @patricktree/commons-ecma@2.1.1
 
 ## 2.1.0
 
@@ -36,7 +36,7 @@
 ### Patch Changes
 
 - Updated dependencies [98c3b5e]
-  - @pkerschbaum/commons-ecma@2.1.0
+  - @patricktree/commons-ecma@2.1.0
 
 ## 2.0.0
 
@@ -54,4 +54,4 @@
 
 ### Major Changes
 
-- initial version (extracted from https://github.com/pkerschbaum/pkerschbaum-homepage)
+- initial version (extracted from https://github.com/patricktree/patricktree-homepage)

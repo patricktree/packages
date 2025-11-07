@@ -1,4 +1,4 @@
-# @pkerschbaum/pkg-consumption-test
+# @patricktree/pkg-consumption-test
 
 ## 1.0.3
 
@@ -9,5 +9,5 @@
 - f43b99b: chore(deps): bump all deps to latest and apply ESLint fixes
 - Updated dependencies [aff99e2]
 - Updated dependencies [f43b99b]
-  - @pkerschbaum/commons-node@2.2.0
-  - @pkerschbaum/commons-ecma@2.4.1
+  - @patricktree/commons-node@2.2.0
+  - @patricktree/commons-ecma@2.4.1

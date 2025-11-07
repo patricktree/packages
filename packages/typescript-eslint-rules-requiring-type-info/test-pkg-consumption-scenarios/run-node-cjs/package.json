@@ -2,9 +2,9 @@
   "name": "run-node-cjs",
   "scripts": {
     "execute-scenario": "node ./src/test.cjs",
-    "postinstall": "node --enable-source-maps --input-type=module -e 'import { fetchAndStoreRules } from \"@pkerschbaum/typescript-eslint-rules-requiring-type-info\"; void fetchAndStoreRules();'"
+    "postinstall": "node --enable-source-maps --input-type=module -e 'import { fetchAndStoreRules } from \"@patricktree/typescript-eslint-rules-requiring-type-info\"; void fetchAndStoreRules();'"
   },
   "dependencies": {
-    "@pkerschbaum/typescript-eslint-rules-requiring-type-info": "*"
+    "@patricktree/typescript-eslint-rules-requiring-type-info": "*"
   }
 }

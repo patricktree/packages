@@ -19,4 +19,4 @@ This package is a CLI which accompishes that.
 
 ## Codemod ideas
 
-- introduce `@pkerschbaum/typescript-eslint-rules-requiring-type-info` everywhere
+- introduce `@patricktree/typescript-eslint-rules-requiring-type-info` everywhere

@@ -1,13 +1,13 @@
 {
-  "name": "@pkerschbaum/runtime-extensions-node",
+  "name": "@patricktree/runtime-extensions-node",
   "version": "0.0.1",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/runtime-extensions-node",
+  "homepage": "https://github.com/patricktree/packages/tree/main/packages/runtime-extensions-node",
   "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
+    "url": "https://github.com/patricktree/packages/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pkerschbaum/packages",
+    "url": "https://github.com/patricktree/packages",
     "directory": "packages/runtime-extensions-node"
   },
   "license": "MIT",
