@@ -26,8 +26,6 @@ type ConsoleLocation = ReturnType<ConsoleMessage['location']>;
 
 type ReadableArticle = { title?: string; content?: string; url: string };
 
-type SearchResult = { title: string; link: string; snippet: string; content?: string };
-
 type StartOptions = {
   port: number;
   profile: boolean;
@@ -50,13 +48,6 @@ type ConsoleOptions = {
   follow?: boolean;
   timeout?: number;
   noSerialize?: boolean;
-};
-
-type SearchOptions = {
-  port: number;
-  count: number;
-  content?: boolean;
-  timeout?: number;
 };
 
 type ContentOptions = { port: number; timeout?: number };
@@ -770,115 +761,6 @@ program
         const duration = timeout ?? 5;
         console.log(gray(`Capturing console logs for ${duration} seconds...`));
         await sleep(duration * 1000);
-      }
-    } finally {
-      await browser.disconnect();
-    }
-  });
-
-program
-  .command('search <query...>')
-  .description('Google search with optional readable content extraction.')
-  .option(
-    '--port <number>',
-    'Debugger port (default: 9222)',
-    (value) => Number.parseInt(value, 10),
-    DEFAULT_PORT,
-  )
-  .option(
-    '-n, --count <number>',
-    'Number of results to return (default: 5, max: 50)',
-    (value) => Number.parseInt(value, 10),
-    5,
-  )
-  .option('--content', 'Fetch readable content for each result (slower).', false)
-  .option(
-    '--timeout <seconds>',
-    'Per-navigation timeout in seconds (default: 10).',
-    (value) => Number.parseInt(value, 10),
-    10,
-  )
-  .action(async (queryWords: string[], options: SearchOptions) => {
-    const port = options.port;
-    const count = Math.max(1, Math.min(options.count, 50));
-    const fetchContent = Boolean(options.content);
-    const timeoutMs = Math.max(3, options.timeout ?? 10) * 1000;
-    const query = queryWords.join(' ');
-
-    const { browser, page } = await getActivePage(port);
-    try {
-      const results: SearchResult[] = [];
-      let start = 0;
-      while (results.length < count) {
-        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&start=${start}`;
-        await page
-          .goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs })
-          .catch(() => undefined);
-        await page.waitForSelector('div.MjjYud', { timeout: 3000 }).catch(() => undefined);
-
-        const pageResults = await page.evaluate((): SearchResult[] => {
-          const items: SearchResult[] = [];
-          for (const result of document.querySelectorAll('div.MjjYud')) {
-            const titleEl = result.querySelector('h3');
-            const linkEl = result.querySelector('a');
-            const snippetEl = result.querySelector('div.VwiC3b, div[data-sncf]');
-            const link = linkEl?.getAttribute('href') ?? '';
-            if (titleEl && linkEl && link && !link.startsWith('https://www.google.com')) {
-              items.push({
-                title: titleEl.textContent?.trim() ?? '',
-                link,
-                snippet: snippetEl?.textContent?.trim() ?? '',
-              });
-            }
-          }
-          return items;
-        });
-
-        for (const result of pageResults) {
-          if (results.length >= count) {
-            break;
-          }
-          if (!results.some((existing) => existing.link === result.link)) {
-            results.push(result);
-          }
-        }
-
-        if (pageResults.length === 0 || start >= 90) {
-          break;
-        }
-        start += 10;
-      }
-
-      if (fetchContent) {
-        for (const result of results) {
-          try {
-            await page
-              .goto(result.link, { waitUntil: 'networkidle2', timeout: timeoutMs })
-              .catch(() => undefined);
-            const article = await extractReadableContent(page);
-            result.content = article.content ?? '(No readable content)';
-          } catch (error) {
-            const message = error instanceof Error ? error.message : String(error);
-            result.content = `(Error fetching content: ${message})`;
-          }
-        }
-      }
-
-      for (const [index, r] of results.entries()) {
-        console.log(`--- Result ${index + 1} ---`);
-        console.log(`Title: ${r.title}`);
-        console.log(`Link: ${r.link}`);
-        if (r.snippet) {
-          console.log(`Snippet: ${r.snippet}`);
-        }
-        if (r.content) {
-          console.log(`Content:\n${r.content}`);
-        }
-        console.log('');
-      }
-
-      if (results.length === 0) {
-        console.log('No results found.');
       }
     } finally {
       await browser.disconnect();

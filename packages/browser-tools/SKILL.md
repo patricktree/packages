@@ -13,4 +13,4 @@ A standalone Chrome helper inspired by Mario Zechner’s [“What if you don’t
 
 `./bin/browser-tools-cli.js`
 
-Common commands include `start --profile`, `nav <url>`, `eval '<js>'`, `screenshot`, `search --content "<query>"`, `content <url>`, `inspect`, and `kill --all --force`
+Common commands include `start --profile`, `nav <url>`, `eval '<js>'`, `screenshot`, `content <url>`, `inspect`, and `kill --all --force`
