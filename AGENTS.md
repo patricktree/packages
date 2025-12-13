@@ -23,6 +23,7 @@
 - TypeScript-first; follow shared configs from `@patricktree/config-eslint` and `@patricktree/config-typescript`.
 - Format with Prettier
 - Prefer `camelCase` for functions/variables, `PascalCase` for types/classes, and lower-case descriptive filenames under `src/`.
+- Only disable ESLint rules when there is truly no other viable option; prefer code or config fixes instead.
 - Respect each package's module target (CommonJS vs ESM) and keep exports aligned with existing `package.json` fields.
 
 ## Testing Guidelines

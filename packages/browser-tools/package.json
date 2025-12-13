@@ -1,0 +1,33 @@
+{
+  "name": "@patricktree/browser-tools",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": null,
+    "./*": null
+  },
+  "bin": {
+    "browser-tools": "./bin/browser-tools-cli.js"
+  },
+  "files": [
+    "dist/**",
+    "!dist/**/*.d.ts.map"
+  ],
+  "scripts": {
+    "build": "pnpm run internal:compile",
+    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
+    "lint": "pnpm run lint:file .",
+    "lint:file": "eslint --max-warnings 0",
+    "lint:fix": "pnpm run lint --fix",
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\""
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "puppeteer-core": "^23.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
+  }
+}
