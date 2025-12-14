@@ -17,6 +17,7 @@
 - `pnpm --filter <pkg> run dev`: package-level watch/compile loop when available (e.g., codemods, pkg-consumption-test).
 - `pnpm --filter <pkg> test`: run package tests.
 - `pnpm nuke`, `pnpm nuke:artifacts`, `pnpm nuke:node-modules`: clean builds, cache folders, and `node_modules`.
+- Validation when you think you are finished: `pnpm install && pnpm run format && pnpm run build && pnpm run lint:fix`.
 
 ## Coding Style & Naming Conventions
 
