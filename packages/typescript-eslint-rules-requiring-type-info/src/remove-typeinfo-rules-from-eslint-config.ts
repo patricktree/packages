@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 
-import { getRules } from '#pkg/get-rules';
+import { getRules } from '#pkg/get-rules.js';
 
 export function removeTypeInfoRules(eslintConfig: Linter.Config): Linter.Config {
   const rulesRequiringTypeInfo = getRules();

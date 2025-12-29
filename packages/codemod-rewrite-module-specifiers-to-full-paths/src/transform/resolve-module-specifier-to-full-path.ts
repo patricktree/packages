@@ -2,7 +2,7 @@ import path from 'node:path';
 import invariant from 'tiny-invariant';
 import ts from 'typescript';
 
-import { VisitorContext } from '#pkg/transform/types';
+import { VisitorContext } from '#pkg/transform/types.js';
 
 const tsExtensionToJsExtensionMap = {
   /* map .d.ts and its variants to just .js */

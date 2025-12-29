@@ -8,7 +8,7 @@
   "scripts": {
     "build": "pnpm run internal:build:compile",
     "dev": "pnpm run internal:build:compile -w --preserveWatchOutput",
-    "internal:build:compile": "tsc -p ./tsconfig.build.json",
+    "internal:build:compile": "tsc --build ./tsconfig.json",
     "lint": "pnpm run lint:js",
     "lint:fix": "pnpm run lint:js:file . --fix",
     "lint:js": "pnpm run lint:js:file .",

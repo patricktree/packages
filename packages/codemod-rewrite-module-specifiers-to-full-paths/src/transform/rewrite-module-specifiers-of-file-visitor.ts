@@ -2,8 +2,8 @@
 import jscodeshift from 'jscodeshift';
 import invariant from 'tiny-invariant';
 
-import { resolveModuleSpecifierToFullPath } from '#pkg/transform/resolve-module-specifier-to-full-path';
-import type { VisitorContext } from '#pkg/transform/types';
+import { resolveModuleSpecifierToFullPath } from '#pkg/transform/resolve-module-specifier-to-full-path.js';
+import type { VisitorContext } from '#pkg/transform/types.js';
 
 type QuoteToUseRef = {
   value: NonNullable<Parameters<jscodeshift.Collection['toSource']>[0]>['quote'];

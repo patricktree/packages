@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-- `packages/*`: TypeScript libraries and CLIs with `src/`, `tsconfig.project.json`, and `turbo.json`; builds emit to `dist/`.
+- `packages/*`: TypeScript libraries and CLIs with `src/`, `tsconfig.json`, and `turbo.json`; builds emit to `dist/`.
 - `platform/*`: shared tooling packages (`config-eslint`, `config-typescript`, `superturbo`) used across the workspace.
 - `test/*`: fixture packages (e.g., `test/test-package-for-pkg-consumption-test`) used in integration scenarios.
 - `patches/`: patched dependencies (TypeScript patch referenced in `package.json#pnpm.patchedDependencies`).
@@ -38,4 +38,3 @@
 - Follow Conventional Commits as seen in history (`chore:`, `fix(scope):`, `ci:`, `refactor:`); include scope when useful.
 - Add a Changeset (`pnpm changeset`) for user-facing package changes; omit for tooling-only tweaks unless publishing impact.
 - PRs should describe intent, affected packages, and commands run (`build`, `lint`, relevant tests); link issues and include screenshots/logs for UX/CLI changes when helpful.
-- Avoid updating the TypeScript patch manually; use `pnpm run create-pnpm-patch-via-ts-patch` when bumping versions and keep `patches/typescript@...` in sync.

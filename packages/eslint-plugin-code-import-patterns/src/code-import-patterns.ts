@@ -4,8 +4,8 @@ import type { TSESTree } from '@typescript-eslint/experimental-utils';
 import type * as eslint from 'eslint';
 import path from 'node:path';
 
-import type { ImportPatternsConfig, ObjectPattern, PatternsCollection, Zone } from '#pkg/types';
-import { createImportRuleListener, isNotNullish } from '#pkg/utils';
+import type { ImportPatternsConfig, ObjectPattern, PatternsCollection, Zone } from '#pkg/types.js';
+import { createImportRuleListener, isNotNullish } from '#pkg/utils.js';
 
 type MessageId = 'noAllowedPatternDidMatch' | 'forbiddenPatternWasViolated';
 type Messages = {
@@ -132,7 +132,7 @@ function testPattern(stringOrRegexToTest: string | RegExp, path: string): boolea
   if (typeof stringOrRegexToTest === 'string') {
     importIsOK = path === stringOrRegexToTest;
   } else if (thingIsRegexp(stringOrRegexToTest)) {
-    importIsOK = !!stringOrRegexToTest.test(path);
+    importIsOK = stringOrRegexToTest.test(path);
   } else {
     assertIsUnreachable(stringOrRegexToTest);
   }

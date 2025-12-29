@@ -1,0 +1,15 @@
+{
+  "extends": "@patricktree/config-typescript/tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "rootDir": "./src",
+    "types": ["node"],
+
+    /* Emit */
+    "noEmit": true,
+
+    /* JavaScript Support */
+    "checkJs": true
+  },
+  "include": ["src/**/*"]
+}

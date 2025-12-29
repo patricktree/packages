@@ -1,16 +1,17 @@
 {
   "references": [
-    { "path": "./packages/codemod-rewrite-module-specifiers-to-full-paths/tsconfig.project.json" },
-    { "path": "./packages/commons-ecma/tsconfig.project.json" },
-    { "path": "./packages/commons-node/tsconfig.project.json" },
-    { "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.project.json" },
-    { "path": "./packages/fetch-favicon/tsconfig.project.json" },
-    { "path": "./packages/fetch-sitemap-locations/tsconfig.project.json" },
-    { "path": "./packages/pk-cli/tsconfig.project.json" },
-    { "path": "./packages/pkg-consumption-test/tsconfig.project.json" },
-    { "path": "./packages/pkg-management/tsconfig.project.json" },
-    { "path": "./packages/runtime-extensions-node/tsconfig.project.json" },
-    { "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json" },
-    { "path": "./platform/superturbo/tsconfig.project.json" }
+    { "path": "./packages/codemod-rewrite-module-specifiers-to-full-paths/tsconfig.json" },
+    { "path": "./packages/commons-ecma/tsconfig.json" },
+    { "path": "./packages/commons-node/tsconfig.json" },
+    { "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.json" },
+    { "path": "./packages/fetch-favicon/tsconfig.json" },
+    { "path": "./packages/fetch-sitemap-locations/tsconfig.json" },
+    { "path": "./packages/pk-cli/tsconfig.json" },
+    { "path": "./packages/pkg-consumption-test/tsconfig.json" },
+    { "path": "./packages/pkg-management/tsconfig.json" },
+    { "path": "./packages/runtime-extensions-node/tsconfig.json" },
+    { "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.json" },
+    { "path": "./platform/config-typescript/tsconfig.json" },
+    { "path": "./platform/superturbo/tsconfig.json" }
   ]
 }

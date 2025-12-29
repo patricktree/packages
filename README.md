@@ -4,7 +4,6 @@
   - [Prerequisites](#prerequisites)
   - [Build \& Run](#build--run)
   - [Additional commands for development](#additional-commands-for-development)
-- [Updating TypeScript](#updating-typescript)
 
 ## Development
 
@@ -27,12 +26,8 @@ For detailed information about the repository structure, conventions, and develo
 
 ### Build & Run
 
-See [Common Commands in CLAUDE.md](./CLAUDE.md#common-commands) for build and development commands.
+See [AGENTS.md](./AGENTS.md) for build and development commands.
 
 ### Additional commands for development
 
 See `scripts` of [`./package.json`](./package.json) for available scripts in the workspace.
-
-## Updating TypeScript
-
-See [TypeScript Patching in CLAUDE.md](./CLAUDE.md#typescript-patching) for detailed instructions on updating TypeScript with our custom transformer setup.

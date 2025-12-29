@@ -2,7 +2,7 @@ import axios from 'axios';
 import { JSDOM } from 'jsdom';
 import fs from 'node:fs';
 
-import { constants } from '#pkg/constants';
+import { constants } from '#pkg/constants.js';
 
 export async function fetchAndStoreRules() {
   const response = await axios.get<string>('https://typescript-eslint.io/rules/#extension-rules');
@@ -23,7 +23,7 @@ export async function fetchAndStoreRules() {
       if (!ruleAnchor) {
         throw new Error(`found a rule but could not extract rule anchor`);
       }
-      const nameOfRule = ruleAnchor.textContent?.trim();
+      const nameOfRule = ruleAnchor.textContent.trim();
       if (!nameOfRule) {
         throw new Error(`found a rule but could not extract name of the rule`);
       }

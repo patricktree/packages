@@ -4,7 +4,6 @@
   "scripts": {
     "build": "superturbo build",
     "changeset": "changeset",
-    "create-pnpm-patch-via-ts-patch": "pnpm --filter=\"@patricktree/pkg-management\" exec node ./dist/create-pnpm-patch-via-ts-patch.mjs --typescript-version=5.5.4 --ts-patch-version=3.2.1",
     "format": "prettier --write --ignore-unknown .",
     "lint": "superturbo lint",
     "lint:fix": "superturbo lint:fix",
@@ -12,7 +11,7 @@
     "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
     "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
     "nuke:node-modules": "del-cli \"**/node_modules\"",
-    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky && pnpm exec add-all-tsconfigs-as-project-references --monorepo-path=. --tsconfig-filename=\"tsconfig.project.json\")",
+    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky && pnpm exec add-all-tsconfigs-as-project-references --monorepo-path=. --tsconfig-filename=\"tsconfig.json\")",
     "test": "pnpm --parallel run test"
   },
   "devDependencies": {
@@ -21,8 +20,8 @@
     "@patricktree/config-typescript": "workspace:*",
     "@patricktree/pkg-management": "^2.1.0",
     "@patricktree/superturbo": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^8.26.1",
-    "@typescript-eslint/parser": "^8.26.1",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
+    "@typescript-eslint/parser": "^8.51.0",
     "del-cli": "^5.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -30,7 +29,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jsdoc": "^50.2.2",
-    "eslint-plugin-n": "^17.10.2",
+    "eslint-plugin-n": "^17.23.1",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-regexp": "^2.6.0",
     "eslint-plugin-unicorn": "^55.0.0",
@@ -38,8 +37,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-packagejson": "^2.5.2",
     "turbo": "^2.7.2",
-    "typescript": "~5.8.2",
-    "typescript-transform-paths": "^3.5.5",
+    "typescript": "~5.9.3",
     "zx": "^8.1.5"
   },
   "packageManager": "pnpm@10.11.0",
@@ -52,9 +50,6 @@
         "eslint",
         "@types/eslint"
       ]
-    },
-    "patchedDependencies": {
-      "typescript@5.8.2": "patches/typescript@5.8.2.patch"
     }
   }
 }

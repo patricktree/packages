@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-import { constants } from '#pkg/constants';
+import { constants } from '#pkg/constants.js';
 
 export function getRules() {
   // eslint-disable-next-line n/no-sync

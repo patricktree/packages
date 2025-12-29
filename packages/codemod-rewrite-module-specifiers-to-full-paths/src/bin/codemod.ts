@@ -3,8 +3,8 @@
 import * as commander from '@commander-js/extra-typings';
 import fs from 'node:fs';
 
-import { loadTypeScriptProgram } from '#pkg/load-typescript-program';
-import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index';
+import { loadTypeScriptProgram } from '#pkg/load-typescript-program.js';
+import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index.js';
 
 const commanderProgram = new commander.Command()
   .addOption(

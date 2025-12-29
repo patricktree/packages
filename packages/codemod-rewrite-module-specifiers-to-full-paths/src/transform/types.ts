@@ -1,4 +1,4 @@
-import type { TypeScriptProgram } from '#pkg/load-typescript-program';
+import type { TypeScriptProgram } from '#pkg/load-typescript-program.js';
 
 export type VisitorContext = {
   absolutePathSourceFile: string;

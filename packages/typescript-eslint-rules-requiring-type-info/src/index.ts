@@ -1,3 +1,3 @@
-export * from '#pkg/get-rules';
-export * from '#pkg/fetch-and-store-rules';
-export * from '#pkg/remove-typeinfo-rules-from-eslint-config';
+export * from '#pkg/get-rules.js';
+export * from '#pkg/fetch-and-store-rules.js';
+export * from '#pkg/remove-typeinfo-rules-from-eslint-config.js';
