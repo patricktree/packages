@@ -120,6 +120,8 @@ module.exports = {
       },
     ],
     'n/handle-callback-err': 'error',
+    /* n/hashbang has false positives */
+    'n/hashbang': 'off',
     'n/no-callback-literal': 'error',
     // disable "n/no-extraneous-import" --> thanks to "isolated mode" of node_modules of pnpm and "public-hoist-pattern" being disabled of this monorepo, there is no possibilty for extraneous imports
     'n/no-extraneous-import': 'off',
