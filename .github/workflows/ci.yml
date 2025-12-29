@@ -1,0 +1,39 @@
+name: '🔎 CI'
+
+# configure concurrency: cancel pending and in-progress workflow runs if a new commit to the same branch is pushed (`github.head_ref` is the source branch of PRs)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+# Remove default permissions of GITHUB_TOKEN for security
+# https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened # new PR was created
+      - synchronize # the last commit of the `head_ref` (= source branch) changed, e.g. a new commit was pushed or the source branch was rebased
+      - ready_for_review # the PR switched from draft to non-draft
+      - reopened # PR had been closed and got reopened
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Bootstrap monorepo
+        uses: ./.github/actions/bootstrap-monorepo
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Run tests
+        run: pnpm run --recursive test
