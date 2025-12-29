@@ -5,17 +5,17 @@
     "build": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
+      "outputs": [],
     },
     "lint": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
+      "outputs": [],
     },
     "lint:fix": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
-    }
-  }
+      "outputs": [],
+    },
+  },
 }

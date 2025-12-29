@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [".npmrc", ".nvmrc"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+  },
+}
