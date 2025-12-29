@@ -1,5 +1,11 @@
 # @patricktree/codemod-rewrite-module-specifiers-to-full-paths
 
+## 1.0.2
+
+### Patch Changes
+
+- bbb5955: Add a shebang to the CLI entrypoint so npx can execute the bin script.
+
 ## 1.0.1
 
 ### Patch Changes
