@@ -1,5 +1,11 @@
 # eslint-plugin-code-import-patterns
 
+## 3.0.3
+
+### Patch Changes
+
+- chore(eslint-plugin-code-import-patterns): use exact module specifiers
+
 ## 3.0.2
 
 ### Patch Changes

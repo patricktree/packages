@@ -1,5 +1,16 @@
 # @patricktree/commons-node
 
+## 3.0.0
+
+### Major Changes
+
+- build(commons-node)!: ship as ESM
+
+### Patch Changes
+
+- Updated dependencies
+  - @patricktree/commons-ecma@3.0.0
+
 ## 2.2.0
 
 ### Minor Changes

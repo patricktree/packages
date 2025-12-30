@@ -1,5 +1,11 @@
 # @patricktree/commons-ecma
 
+## 3.0.0
+
+### Major Changes
+
+- build(commons-ecma)!: ship as ESM
+
 ## 2.4.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @patricktree/typescript-eslint-rules-requiring-type-info
 
+## 1.0.3
+
+### Patch Changes
+
+- chore(typescript-eslint-rules-requiring-type-info): use exact module specifiers
+
 ## 1.0.2
 
 ### Patch Changes

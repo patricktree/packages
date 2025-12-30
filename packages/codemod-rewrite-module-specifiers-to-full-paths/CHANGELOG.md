@@ -1,5 +1,19 @@
 # @patricktree/codemod-rewrite-module-specifiers-to-full-paths
 
+## 2.0.0
+
+### Major Changes
+
+- build(codemod-rewrite-module-specifiers-to-full-paths)!: ship as ESM
+
+### Patch Changes
+
+- chore(codemod-rewrite-module-specifiers-to-full-paths): use exact module specifiers
+- Updated dependencies
+- Updated dependencies
+  - @patricktree/commons-ecma@3.0.0
+  - @patricktree/commons-node@3.0.0
+
 ## 1.0.2
 
 ### Patch Changes
