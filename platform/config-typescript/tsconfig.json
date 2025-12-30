@@ -1,5 +1,5 @@
 {
-  /* based on https://patricktree.com/tidbits/sensible-tsconfig-defaults */
+  /* based on https://patricktree.me/tidbits/sensible-tsconfig-defaults */
 
   "compilerOptions": {
     /* Language and Environment */
@@ -15,6 +15,7 @@
     "sourceMap": true,
 
     /* Interop Constraints */
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

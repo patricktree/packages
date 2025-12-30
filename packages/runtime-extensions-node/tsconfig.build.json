@@ -6,11 +6,7 @@
     "types": ["node"],
 
     /* Emit */
-    "outDir": "./dist",
-
-    /* Interop Constraints */
-    /* disable "verbatimModuleSyntax" because it is annoying for CJS packages */
-    "verbatimModuleSyntax": false
+    "outDir": "./dist"
   },
   "include": ["src/**/*"]
 }

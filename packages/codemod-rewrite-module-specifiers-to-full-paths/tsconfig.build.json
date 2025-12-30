@@ -2,16 +2,11 @@
   "extends": "@patricktree/config-typescript/tsconfig.json",
   "compilerOptions": {
     /* Modules */
-    "module": "node16",
     "rootDir": "./src",
     "types": ["node", "ts-expose-internals"],
 
     /* Emit */
-    "outDir": "./dist",
-
-    /* Interop Constraints */
-    /* disable "verbatimModuleSyntax" because it is annoying for CJS packages */
-    "verbatimModuleSyntax": false
+    "outDir": "./dist"
   },
   "include": ["src/**/*"]
 }

@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "type": "module",
   "imports": {
     "#pkg/*": "./dist/*"
   },

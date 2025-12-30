@@ -1,9 +1,12 @@
 {
-  "extends": ["./tsconfig.build.json"],
+  "extends": [
+    "./tsconfig.build.json",
+    "@patricktree/config-typescript/tsconfig.typecheck-only.json",
+    "@patricktree/config-typescript/tsconfig.runtime-node20.json"
+  ],
   "compilerOptions": {
     "rootDir": "."
   },
   "include": ["./test/*", "./test/*.json"],
-  "exclude": ["**/node_modules/**"],
   "references": [{ "path": "./tsconfig.build.json" }]
 }
