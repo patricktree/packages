@@ -61,10 +61,9 @@
     "@patricktree/runtime-extensions-node": "workspace:*",
     "@types/jscodeshift": "^0.11.11",
     "@types/node": "^20",
-    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/coverage-v8": "^4.0.16",
     "ts-expose-internals": "^5.5.4",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.0.5"
+    "vitest": "^4.0.16"
   },
   "publishConfig": {
     "access": "public"

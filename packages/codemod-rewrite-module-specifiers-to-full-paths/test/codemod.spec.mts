@@ -1,9 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import url from 'node:url';
 import { test, expect } from 'vitest';
 
 import { loadTypeScriptProgram } from '#pkg/load-typescript-program.js';
 import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index.js';
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const PATH_TO_CODEMOD_INPUTS = path.join(__dirname, 'codemod-inputs');
 const PATH_TO_CODEMOD_OUTPUTS = path.join(__dirname, 'codemod-outputs');

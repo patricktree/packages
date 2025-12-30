@@ -1,17 +1,19 @@
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig, configDefaults } from 'vitest/config';
 
 const config = defineConfig({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any -- works correctly
-  plugins: [tsconfigPaths() as any],
   test: {
     coverage: {
       provider: 'v8',
-      all: true,
       reporter: ['lcovonly'],
       enabled: true,
       exclude: configDefaults.coverage.exclude ?? [],
     },
+
+    /**
+     * disabling {@link https://vitest.dev/config/isolate.html} to improve performance and enable worker
+     * fixtures ({@link https://vitest.dev/guide/test-context.html#per-scope-context-3-2-0})
+     */
+    isolate: false,
   },
 });
 
