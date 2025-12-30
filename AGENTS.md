@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 
 - `packages/*`: TypeScript libraries and CLIs with `src/`, `tsconfig.json`, and `turbo.json`; builds emit to `dist/`.
-- `platform/*`: shared tooling packages (`config-eslint`, `config-typescript`, `superturbo`) used across the workspace.
+- `platform/*`: shared tooling packages (`eslint-config`, `config-typescript`, `superturbo`) used across the workspace.
 - `test/*`: fixture packages (e.g., `test/test-package-for-pkg-consumption-test`) used in integration scenarios.
 - `patches/`: patched dependencies (TypeScript patch referenced in `package.json#pnpm.patchedDependencies`).
 - Root files: `tsconfig.json` references all projects; `turbo.json` coordinates build/lint; `.nvmrc` and `pnpm-workspace.yaml` define runtime and workspace scope.
@@ -21,7 +21,7 @@
 
 ## Coding Style & Naming Conventions
 
-- TypeScript-first; follow shared configs from `@patricktree/config-eslint` and `@patricktree/config-typescript`.
+- TypeScript-first; follow shared configs from `@patricktree/eslint-config` and `@patricktree/config-typescript`.
 - Format with Prettier
 - Prefer `camelCase` for functions/variables, `PascalCase` for types/classes, and lower-case descriptive filenames under `src/`.
 - Only disable ESLint rules when there is truly no other viable option; prefer code or config fixes instead.

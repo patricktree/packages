@@ -13,6 +13,7 @@ engineStrict: true
 autoInstallPeers: false
 dedupePeerDependents: false
 strictPeerDependencies: true
+resolvePeersFromWorkspaceRoot: false
 
 # https://pnpm.io/npmrc#update-notifier
 updateNotifier: false

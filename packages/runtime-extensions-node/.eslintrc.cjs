@@ -1,9 +1,6 @@
-const baseEslintConfig = require('@patricktree/config-eslint/eslint-ecma.cjs');
-
 module.exports = {
-  ...baseEslintConfig,
+  extends: ['@patricktree/eslint-config/eslint-ecma.cjs'],
   parserOptions: {
-    ...baseEslintConfig.parserOptions,
     tsconfigRootDir: __dirname,
   },
 };
