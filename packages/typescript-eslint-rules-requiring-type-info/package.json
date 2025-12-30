@@ -33,17 +33,20 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run internal:compile",
+    "build": "superturbo run turbo:build",
     "dev": "pnpm run build --watch --preserveWatchOutput",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "pnpm run lint:file .",
+    "lint": "superturbo run turbo:lint",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint --fix",
+    "lint:fix": "superturbo run turbo:lint:fix",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
     "prepack": "pnpm run nuke:artifacts && pnpm run build",
     "test": "pnpm run test:pkg-consumption",
-    "test:pkg-consumption": "pkg-consumption-test --packageName=\"@patricktree/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\""
+    "test:pkg-consumption": "pkg-consumption-test --packageName=\"@patricktree/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\"",
+    "turbo:build": "pnpm run internal:compile",
+    "turbo:lint": "pnpm run lint:file .",
+    "turbo:lint:fix": "pnpm run lint --fix"
   },
   "dependencies": {
     "axios": "^1.7.7",

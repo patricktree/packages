@@ -2,11 +2,11 @@
   "name": "patricktree",
   "private": true,
   "scripts": {
-    "build": "superturbo build",
+    "build": "superturbo run turbo:build",
     "changeset": "changeset",
     "format": "prettier --write --ignore-unknown .",
-    "lint": "superturbo lint",
-    "lint:fix": "superturbo lint:fix",
+    "lint": "superturbo run turbo:lint",
+    "lint:fix": "superturbo run turbo:lint:fix",
     "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:node-modules",
     "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
     "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@patricktree/config-eslint": "workspace:*",
+    "@patricktree/config-prettier": "workspace:*",
     "@patricktree/config-typescript": "workspace:*",
     "@patricktree/pkg-management": "^2.1.0",
     "@patricktree/superturbo": "workspace:*",
@@ -40,9 +41,9 @@
     "typescript": "~5.9.3",
     "zx": "^8.1.5"
   },
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
-    "pnpm": "10.11.0"
+    "pnpm": "10.26.2"
   },
   "pnpm": {
     "updateConfig": {

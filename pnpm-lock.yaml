@@ -14,6 +14,9 @@ importers:
       '@patricktree/config-eslint':
         specifier: workspace:*
         version: link:platform/config-eslint
+      '@patricktree/config-prettier':
+        specifier: workspace:*
+        version: link:platform/config-prettier
       '@patricktree/config-typescript':
         specifier: workspace:*
         version: link:platform/config-typescript
@@ -341,6 +344,10 @@ importers:
         version: 20.16.5
 
   platform/config-eslint: {}
+
+  platform/config-prettier: {}
+
+  platform/config-turbo: {}
 
   platform/config-typescript: {}
 

@@ -1,6 +1,4 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 pnpm exec prettier --ignore-unknown --check .
-pnpm exec superturbo build lint
+pnpm run build
+pnpm run lint
 pnpm exec prettier --ignore-unknown --check .
