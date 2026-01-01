@@ -14,7 +14,7 @@
   "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "type": "module",
   "imports": {
-    "#pkg/*": "./dist/*"
+    "#pkg/*": "./src/*"
   },
   "exports": {
     ".": null,
