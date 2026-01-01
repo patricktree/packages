@@ -6,6 +6,9 @@ onlyBuiltDependencies:
   - core-js
   - esbuild
 
+publicHoistPattern:
+  - '*eslint*'
+
 # enforce specific Node.js and pnpm version (https://pnpm.io/npmrc#engine-strict)
 engineStrict: true
 
