@@ -46,7 +46,7 @@
     "test:pkg-consumption": "pkg-consumption-test --packageName=\"@patricktree/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\"",
     "turbo:build": "pnpm run internal:compile",
     "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint --fix"
+    "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
     "axios": "^1.7.7",

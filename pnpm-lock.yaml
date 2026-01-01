@@ -131,6 +131,9 @@ importers:
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
 
   packages/fetch-favicon:
     dependencies:
@@ -354,6 +357,9 @@ importers:
       eslint-plugin-unicorn:
         specifier: ^55.0.0
         version: 55.0.0(eslint@8.57.1)
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
 
   platform/superturbo:
     devDependencies:

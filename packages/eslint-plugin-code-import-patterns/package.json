@@ -50,7 +50,7 @@
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
     "turbo:build": "pnpm run internal:compile",
     "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint --fix"
+    "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
     "@typescript-eslint/experimental-utils": "^5.62.0"
@@ -58,7 +58,8 @@
   "devDependencies": {
     "@types/eslint": "^8.56.12",
     "@types/node": "^20",
-    "eslint": "^8.57.1"
+    "eslint": "^8.57.1",
+    "typescript": "~5.9.3"
   },
   "publishConfig": {
     "access": "public"

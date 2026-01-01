@@ -40,7 +40,7 @@
     "prepublishOnly": "pnpm run build",
     "turbo:build": "pnpm run internal:compile",
     "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint --fix"
+    "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
