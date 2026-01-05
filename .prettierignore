@@ -7,3 +7,7 @@ pnpm-lock.yaml
 # coverage
 **/.nyc_output/**
 **/coverage/**
+
+# Playwright
+**/playwright-html-report/**
+**/test-results/**

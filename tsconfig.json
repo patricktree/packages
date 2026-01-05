@@ -11,6 +11,7 @@
     { "path": "./packages/pkg-management/tsconfig.json" },
     { "path": "./packages/runtime-extensions-node/tsconfig.json" },
     { "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.json" },
+    { "path": "./packages/webpage-observer/tsconfig.json" },
     { "path": "./platform/config-typescript/tsconfig.json" },
     { "path": "./platform/superturbo/tsconfig.json" }
   ]
