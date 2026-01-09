@@ -1,20 +1,22 @@
-import '#pkg/set-env.js';
-
-import { devices, type PlaywrightTestConfig, type ReporterDescription } from '@playwright/test';
+import { defineConfig, devices, type ReporterDescription } from '@playwright/test';
 import os from 'node:os';
 
 import { config } from '#pkg/config.js';
 import { playwrightBrowserConfig } from '#pkg/constants.js';
 
 const countOfCpus = os.cpus().length;
-const workers = countOfCpus !== 0 ? (countOfCpus <= 4 ? countOfCpus : 4) : undefined;
+const workers = countOfCpus
+  ? // utilize all logical processors up to a max of 4 to limit RAM usage
+    Math.min(countOfCpus, 4)
+  : undefined;
 
 const htmlReporter: ReporterDescription = [
   'html',
   { open: 'never', outputFolder: '../playwright-html-report' },
 ];
 
-const playwrightConfig: PlaywrightTestConfig = {
+// eslint-disable-next-line import/no-default-export -- needs to be default export for Playwright
+export default defineConfig({
   fullyParallel: true,
   reporter: config.CI ? [htmlReporter, ['github']] : [htmlReporter],
   testMatch: ['*.spec.js'],
@@ -75,10 +77,7 @@ const playwrightConfig: PlaywrightTestConfig = {
           reuseExistingServer: !config.CI,
         }
       : undefined,
-};
-
-// eslint-disable-next-line import/no-default-export -- needs to be default export for Playwright
-export default playwrightConfig;
+});
 
 function createDockerRunCommand(port: number) {
   let dockerRunCommand = `docker run --rm --init --workdir /home/pwuser --user pwuser --network host`;
