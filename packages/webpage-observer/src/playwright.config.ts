@@ -2,7 +2,7 @@ import { defineConfig, devices, type ReporterDescription } from '@playwright/tes
 import os from 'node:os';
 
 import { config } from '#pkg/config.js';
-import { playwrightBrowserConfig } from '#pkg/constants.js';
+import { playwrightBrowser, playwrightServerPortEnvVarName } from '#pkg/constants.js';
 
 const countOfCpus = os.cpus().length;
 const workers = countOfCpus
@@ -41,7 +41,7 @@ export default defineConfig({
   // fail a Playwright run in CI if some test.only is in the source code
   forbidOnly: !!config.CI,
 
-  snapshotPathTemplate: `{testDir}/../snapshots/{testFilePath}/{arg}-{projectName}-${playwrightBrowserConfig.browser === 'docker' ? 'docker' : '{platform}'}{ext}`,
+  snapshotPathTemplate: `{testDir}/../snapshots/{testFilePath}/{arg}-{projectName}-${playwrightBrowser === 'docker' ? 'docker' : '{platform}'}{ext}`,
 
   expect: {
     toHaveScreenshot: {
@@ -59,14 +59,30 @@ export default defineConfig({
 
     // always capture video (seems to not have any performance impact)
     video: 'on',
+
+    connectOptions:
+      playwrightBrowser === 'docker'
+        ? {
+            wsEndpoint: `ws://127.0.0.1:${
+              // eslint-disable-next-line n/no-process-env -- port provided by Playwright server stdout via regex (see webServer.wait.stdout)
+              process.env[playwrightServerPortEnvVarName]
+            }/`,
+          }
+        : undefined,
   },
 
   webServer:
-    playwrightBrowserConfig.browser === 'docker'
+    playwrightBrowser === 'docker'
       ? {
           // start the Playwright server in a docker container
-          command: createDockerRunCommand(playwrightBrowserConfig.port),
-          url: `http://127.0.0.1:${playwrightBrowserConfig.port}/`,
+          command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --host 0.0.0.0"`,
+          wait: {
+            // Capture the Playwright Server port from stdout via regex (https://playwright.dev/docs/api/class-testconfig#test-config-web-server)
+            // eslint-disable-next-line prefer-regex-literals
+            stdout: new RegExp(
+              String.raw`Listening on ws:\/\/0\.0\.0\.0:(?<${playwrightServerPortEnvVarName}>\d+)`,
+            ),
+          },
           stdout: 'pipe',
           stderr: 'pipe',
           timeout: 30_000,
@@ -78,14 +94,3 @@ export default defineConfig({
         }
       : undefined,
 });
-
-function createDockerRunCommand(port: number) {
-  let dockerRunCommand = `docker run --rm --init --workdir /home/pwuser --user pwuser --network host`;
-  if (!config.CI) {
-    // on development machines, we forward the X11 socket to the host system to allow GUI applications to run from within the container
-    dockerRunCommand += ` -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix`;
-  }
-  dockerRunCommand += ` mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --port ${port} --host 0.0.0.0"`;
-
-  return dockerRunCommand;
-}
