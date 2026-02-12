@@ -75,7 +75,7 @@ export default defineConfig({
     playwrightBrowser === 'docker'
       ? {
           // start the Playwright server in a docker container
-          command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --host 0.0.0.0"`,
+          command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.58.2-noble /bin/sh -c "npx -y playwright@1.58.2 run-server --host 0.0.0.0"`,
           wait: {
             // Capture the Playwright Server port from stdout via regex (https://playwright.dev/docs/api/class-testconfig#test-config-web-server)
             // eslint-disable-next-line prefer-regex-literals

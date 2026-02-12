@@ -14,14 +14,14 @@
     "lint:fix": "superturbo run turbo:lint:fix",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
-    "start": "docker pull mcr.microsoft.com/playwright:v1.57.0-noble && playwright test --config ./dist/playwright.config.js",
+    "start": "docker pull mcr.microsoft.com/playwright:v1.58.2-noble && playwright test --config ./dist/playwright.config.js",
     "turbo:build": "pnpm run internal:compile",
     "turbo:lint": "pnpm run lint:file .",
     "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
     "@patricktree/commons-node": "workspace:^",
-    "@playwright/test": "1.57.0",
+    "@playwright/test": "1.58.2",
     "type-fest": "^5.0.0"
   },
   "devDependencies": {
