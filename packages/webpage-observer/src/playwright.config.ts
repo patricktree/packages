@@ -18,7 +18,7 @@ const htmlReporter: ReporterDescription = [
 // eslint-disable-next-line import/no-default-export -- needs to be default export for Playwright
 export default defineConfig({
   fullyParallel: true,
-  reporter: config.CI ? [htmlReporter, ['github']] : [htmlReporter],
+  reporter: config.CI ? [['github'], htmlReporter] : [['list'], htmlReporter],
   testMatch: ['*.spec.js'],
   globalTimeout: 1000 * 8 * 60, // 8 minutes
   projects: [
