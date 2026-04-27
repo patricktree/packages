@@ -1,6 +1,6 @@
 {
   "name": "@patricktree/codemod-rewrite-module-specifiers-to-full-paths",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/patricktree/packages/tree/main/packages/codemod-rewrite-module-specifiers-to-full-paths",
   "bugs": {
     "url": "https://github.com/patricktree/packages/issues"

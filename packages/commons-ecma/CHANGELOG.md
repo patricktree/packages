@@ -1,5 +1,11 @@
 # @patricktree/commons-ecma
 
+## 3.1.0
+
+### Minor Changes
+
+- 8f41d11: Add `serializeErrorWithClause`, a helper that serializes an `Error` including its cause via `pino-std-serializers`.
+
 ## 3.0.0
 
 ### Major Changes

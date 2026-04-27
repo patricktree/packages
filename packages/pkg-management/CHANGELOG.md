@@ -1,5 +1,14 @@
 # @patricktree/pkg-management
 
+## 2.1.2
+
+### Patch Changes
+
+- Updated dependencies [8f41d11]
+- Updated dependencies [8f41d11]
+  - @patricktree/commons-ecma@3.1.0
+  - @patricktree/commons-node@3.1.0
+
 ## 2.1.1
 
 ### Patch Changes
