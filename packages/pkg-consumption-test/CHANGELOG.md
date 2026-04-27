@@ -1,5 +1,13 @@
 # @patricktree/pkg-consumption-test
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [88d3751]
+  - @patricktree/commons-ecma@3.1.1
+  - @patricktree/commons-node@3.1.1
+
 ## 1.0.5
 
 ### Patch Changes

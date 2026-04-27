@@ -1,5 +1,11 @@
 # @patricktree/commons-ecma
 
+## 3.1.1
+
+### Patch Changes
+
+- 88d3751: Fix the typo in the error serialization helper by adding `serializeErrorWithCause` and keeping `serializeErrorWithClause` as a deprecated alias for backwards compatibility.
+
 ## 3.1.0
 
 ### Minor Changes
