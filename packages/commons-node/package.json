@@ -45,7 +45,8 @@
     "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
-    "@patricktree/commons-ecma": "workspace:^"
+    "@patricktree/commons-ecma": "workspace:^",
+    "exit-hook": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^20"

@@ -45,6 +45,7 @@
     "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
+    "pino-std-serializers": "^7.1.0",
     "safe-stable-stringify": "^2.5.0",
     "tiny-invariant": "^1.3.3"
   },
