@@ -3,6 +3,7 @@ import type { ObjectLiteral } from '#pkg/util/types.js';
 export const objects = {
   shallowCopy,
   shallowIsEqual,
+  groupBy,
 };
 
 function shallowCopy<T>(inObject: T): T {
@@ -22,4 +23,21 @@ function shallowIsEqual(obj1: ObjectLiteral, objToCompareWith: ObjectLiteral) {
         Object.hasOwnProperty.call(objToCompareWith, key) && obj1[key] === objToCompareWith[key],
     )
   );
+}
+
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
+ */
+export function groupBy<T, U extends string | number | symbol>(
+  items: Iterable<T>,
+  callbackFn: (element: T, index: number) => U,
+): { [prop in U]?: T[] } {
+  const result: { [prop in U]?: T[] } = {};
+  let index = 0;
+  for (const item of items) {
+    const key = callbackFn(item, index);
+    result[key] = [...(result[key] ?? []), item];
+    index += 1;
+  }
+  return result;
 }
