@@ -1,5 +1,12 @@
 # @patricktree/commons-node
 
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [839b08c]
+  - @patricktree/commons-ecma@3.2.0
+
 ## 3.1.1
 
 ### Patch Changes

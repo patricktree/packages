@@ -1,5 +1,13 @@
 # @patricktree/codemod-rewrite-module-specifiers-to-full-paths
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [839b08c]
+  - @patricktree/commons-ecma@3.2.0
+  - @patricktree/commons-node@3.1.2
+
 ## 2.0.2
 
 ### Patch Changes

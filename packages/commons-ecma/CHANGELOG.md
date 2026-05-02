@@ -1,5 +1,11 @@
 # @patricktree/commons-ecma
 
+## 3.2.0
+
+### Minor Changes
+
+- 839b08c: Add `objects.groupBy()` as a utility for grouping iterable items by a derived key.
+
 ## 3.1.1
 
 ### Patch Changes
