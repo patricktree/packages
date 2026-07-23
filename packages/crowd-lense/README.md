@@ -12,7 +12,7 @@ A crowd-sourced event photo app: guests upload photos from their phones, an admi
 
 - **Framework**: Next.js 14 (App Router) + React 18
 - **Language**: TypeScript
-- **Database**: PostgreSQL via Prisma (schema in `prisma/schema.prisma`)
+- **Database**: PostgreSQL via Prisma (schema in `prisma/schema.prisma`); production runs on Prisma Postgres
 - **File storage**: Vercel Blob (`@vercel/blob`)
 - **Data fetching**: TanStack Query
 - **UI**: Tailwind CSS + Radix UI primitives
@@ -86,10 +86,26 @@ Then open <http://localhost:3000> (it redirects to `/upload`).
 
 ## Deployment
 
-Deployed to the Vercel project `crowd-lense` (root directory `packages/crowd-lense`). There is no Git integration, so deploy via the Vercel CLI from the monorepo root:
+Deployed to the Vercel project `crowd-lense` (root directory `packages/crowd-lense`). There is no Git integration, so deploy with the Vercel CLI from the **monorepo root** (Vercel builds using the configured root directory):
 
 ```bash
 vercel deploy --prod
 ```
 
-The app requires a PostgreSQL database and a Vercel Blob store. Set `DATABASE_URL`, `BLOB_READ_WRITE_TOKEN`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD` as project environment variables, and run `prisma db push` against the database once to create the `images` table.
+### Storage
+
+Production is backed by two Vercel-managed resources, each wiring its own project environment variables:
+
+- **Database** — Prisma Postgres, provisioned through the Vercel Marketplace. It injects a direct `postgres://…@db.prisma.io` `DATABASE_URL` (server-side pooled), which the plain Prisma client (`new PrismaClient()`) connects to directly — no Accelerate / Data Proxy layer is required.
+
+  ```bash
+  vercel integration add prisma/prisma-postgres
+  ```
+
+- **File storage** — a public Vercel Blob store, which injects `BLOB_READ_WRITE_TOKEN`.
+
+  ```bash
+  vercel blob create-store crowd-lense-blob --access public --yes
+  ```
+
+After the database exists, create the schema once with `prisma db push` (see the `db:push` script), and set `ADMIN_USERNAME` and `ADMIN_PASSWORD` as project environment variables for the `/admin/review` Basic Auth gate.
