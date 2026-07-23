@@ -1,6 +1,12 @@
 **/dist
 **/dist-tsc
 **/public
+**/.next
+
+# agent tooling (locally installed skills / lockfiles)
+**/.agents
+**/.claude
+**/skills-lock.json
 
 pnpm-lock.yaml
 

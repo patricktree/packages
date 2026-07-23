@@ -37,3 +37,5 @@
 /.turbo/cache
 /.turbo/cookies
 /.turbo/daemon
+.vercel
+.env*
