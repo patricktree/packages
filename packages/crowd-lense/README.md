@@ -109,3 +109,12 @@ Production is backed by two Vercel-managed resources, each wiring its own projec
   ```
 
 After the database exists, create the schema once with `prisma db push` (see the `db:push` script), and set `ADMIN_USERNAME` and `ADMIN_PASSWORD` as project environment variables for the `/admin/review` Basic Auth gate.
+
+### Enabling and disabling the site
+
+The site is switched on and off with a **Vercel Firewall** custom rule named `Block everything`, which denies all requests to `/`. When the rule is **active**, every request returns `403` (`x-vercel-mitigated: deny`); when it is **inactive**, the site serves normally.
+
+- **Disable the site**: activate the `Block everything` rule.
+- **Enable the site**: deactivate it.
+
+Toggle it under the project's **Firewall** settings in the Vercel dashboard (or via the Firewall config API). Leave the other rules in place — in particular the `Rate limit image upload API requests` rule and the managed WAF (CRS) rules. Pausing the project or toggling deployment protection are separate switches and are not the intended on/off control here.
