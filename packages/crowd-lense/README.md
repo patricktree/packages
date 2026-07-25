@@ -112,7 +112,28 @@ Production is backed by two Vercel-managed resources, each wiring its own projec
   vercel blob create-store crowd-lense-blob --access public --yes
   ```
 
-After the database exists, create the schema once with `prisma db push` (see the `db:push` script), and set `ADMIN_USERNAME` and `ADMIN_PASSWORD` as project environment variables for the `/admin/review` Basic Auth gate.
+After the database exists, create the schema once with `prisma db push` (see the `db:push` script), and set `ADMIN_USERNAME` and `ADMIN_PASSWORD` as project environment variables for the `/admin/*` Basic Auth gate.
+
+### Applying a schema change to production
+
+There is no migrations directory — production is kept in sync with `prisma db push`, run manually against the production `DATABASE_URL`. Pull the production environment into a throwaway file rather than overwriting your local `.env*`, and **always inspect the diff before pushing**, since `db push` will happily drop columns to make the database match the schema:
+
+```bash
+vercel env pull /tmp/crowd-lense.env --environment=production --yes
+export DATABASE_URL="$(grep '^DATABASE_URL=' /tmp/crowd-lense.env | cut -d= -f2- | tr -d '"')"
+
+# Review the SQL that would run — check for anything destructive.
+pnpm exec prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --script
+
+pnpm exec prisma db push --skip-generate
+
+# Confirm: should report "No difference detected."
+pnpm exec prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
+```
+
+Delete the pulled env file afterwards — it contains production secrets. Push the schema change **before** deploying the code that depends on it, so the running deployment never queries a column or enum value that does not exist yet.
+
+> **Gotcha:** `build` runs `tsc` _before_ `prisma generate`, so straight after editing `schema.prisma` the typecheck fails against the stale generated client (e.g. `Property 'DELETED' does not exist on type …`). Run `pnpm run db:generate` once first, then build.
 
 ### Enabling and disabling the site
 
