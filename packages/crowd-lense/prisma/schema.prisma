@@ -29,4 +29,6 @@ enum ImageStatus {
   PENDING
   APPROVED
   REJECTED
+  // Soft delete: the row and its blob are kept, so flipping the status back restores the image.
+  DELETED
 }

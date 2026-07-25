@@ -6,6 +6,7 @@ A crowd-sourced event photo app: guests upload photos from their phones, an admi
 
 - **Upload** (`/upload`, the default landing page) — Guests select up to 10 images (JPEG, PNG, GIF, or WebP, max 10 MB each). Each file is stored in Vercel Blob and recorded in the database with status `PENDING`.
 - **Review** (`/admin/review`) — A moderator, gated behind HTTP Basic Auth, steps through pending photos and marks each `APPROVED` or `REJECTED`.
+- **Manage** (`/admin/images`) — Also gated behind HTTP Basic Auth, a two-column grid of every non-deleted photo with a delete button floating over each one. Deleting asks for confirmation and is a **soft delete**: the photo's status becomes `DELETED` so it disappears from the grid, but the database row and the blob are both kept, so flipping the status back restores it.
 - **Slideshow** (`/view`) — A fullscreen carousel cycles through `APPROVED` photos, least-viewed first, so every submission gets screen time. Promotional images (see below) are interleaved, and a QR code links guests back to the upload page.
 
 ## Tech stack
@@ -29,11 +30,12 @@ crowd-lense/
 │   │   ├── upload/          # Guest upload page (default route via redirect)
 │   │   ├── view/            # Fullscreen slideshow carousel
 │   │   ├── admin/review/    # Moderation UI (Basic Auth)
+│   │   ├── admin/images/    # Grid of all images with soft delete (Basic Auth)
 │   │   └── api/
 │   │       ├── upload/              # POST: validate + store to Blob + DB
 │   │       ├── images/              # GET: `type=user` (approved) or `type=promo`
 │   │       ├── images/[id]/view/    # POST: increment view count
-│   │       └── admin/images/        # GET pending / PATCH approve|reject (Basic Auth)
+│   │       └── admin/images/        # GET list / PATCH approve|reject / DELETE soft-delete (Basic Auth)
 │   ├── components/          # Upload widget, UI primitives, providers
 │   └── lib/                 # `db` (Prisma), `blob`, `auth`, `utils`
 └── next.config.mjs          # `/` → `/upload` redirect, Blob remote image patterns
@@ -41,7 +43,9 @@ crowd-lense/
 
 ## Data model
 
-A single `Image` model tracks each submission: `filename`, `originalFilename`, `mimeType`, `fileSize`, `blobUrl`, a `status` (`PENDING` / `APPROVED` / `REJECTED`), a `viewCount`, and upload/review timestamps.
+A single `Image` model tracks each submission: `filename`, `originalFilename`, `mimeType`, `fileSize`, `blobUrl`, a `status` (`PENDING` / `APPROVED` / `REJECTED` / `DELETED`), a `viewCount`, and upload/review timestamps.
+
+`DELETED` is the soft-delete tombstone set by `/admin/images`. It is excluded from every listing, but the row and its blob survive, so restoring an image is a matter of setting its status back to one of the other three.
 
 ### Promotional images
 
@@ -55,8 +59,8 @@ Copy `.env.example` to `.env` and fill in:
 | ----------------------- | --------------------------------------------------------- |
 | `DATABASE_URL`          | PostgreSQL connection string (direct `postgresql://` URL) |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob read/write token                              |
-| `ADMIN_USERNAME`        | Username for the `/admin/review` Basic Auth gate          |
-| `ADMIN_PASSWORD`        | Password for the `/admin/review` Basic Auth gate          |
+| `ADMIN_USERNAME`        | Username for the `/admin/*` Basic Auth gate               |
+| `ADMIN_PASSWORD`        | Password for the `/admin/*` Basic Auth gate               |
 
 ## Getting started
 
