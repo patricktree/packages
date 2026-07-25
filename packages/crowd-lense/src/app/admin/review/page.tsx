@@ -1,5 +1,6 @@
 'use client';
 
+import { type ReactNode } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle, Clock, Image as ImageIcon } from 'lucide-react';
@@ -63,65 +64,41 @@ export default function AdminPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
+      <PageShell>
+        <div className="text-center py-32">
           <Clock className="w-8 h-8 animate-spin mx-auto mb-4" />
           <p>Loading images...</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center text-red-600">
+      <PageShell>
+        <div className="text-center py-32 text-red-600">
           <p>Error loading images</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (images.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
+      <PageShell>
+        <div className="text-center py-32">
           <ImageIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h2 className="text-xl font-semibold text-gray-600 mb-2">No Pending Images</h2>
-          <p className="text-gray-500 mb-4">All images have been reviewed!</p>
-          <Button asChild variant="outline">
-            <Link href="/admin/images">
-              <ImageIcon className="w-4 h-4 mr-2" />
-              All Images
-            </Link>
-          </Button>
+          <p className="text-gray-500">All images have been reviewed!</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   const currentImage = images[0];
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-black bg-opacity-50 p-4">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-xl font-bold">Admin Review</h1>
-            <p className="text-sm text-gray-300">{images.length} pending</p>
-          </div>
-          <div className="flex space-x-2">
-            <Button asChild variant="secondary" size="sm">
-              <Link href="/admin/images">
-                <ImageIcon className="w-4 h-4 mr-2" />
-                All Images
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-
+    <PageShell dark subtitle={`${images.length} pending`}>
       {/* Main Image */}
       <div className="relative w-full h-screen flex items-center justify-center">
         <Image
@@ -164,6 +141,45 @@ export default function AdminPage() {
           </p>
         </div>
       </div>
+    </PageShell>
+  );
+}
+
+/**
+ * Rendered by every branch of the page, so the header — and with it the link to the images page —
+ * sits in the same place no matter which state the page is in. The reviewing state is a fullscreen
+ * black stage, so its header overlays the image; the other states are ordinary light pages.
+ */
+function PageShell({
+  dark = false,
+  subtitle,
+  children,
+}: {
+  dark?: boolean;
+  subtitle?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={dark ? 'min-h-screen bg-black text-white' : 'min-h-screen bg-gray-100'}>
+      <div
+        className={
+          dark
+            ? 'absolute top-0 left-0 right-0 z-10 flex justify-between items-center bg-black bg-opacity-50 p-4'
+            : 'flex justify-between items-center p-4'
+        }
+      >
+        <div>
+          <h1 className="text-xl font-bold">Admin Review</h1>
+          {subtitle && <p className="text-sm text-gray-300">{subtitle}</p>}
+        </div>
+        <Button asChild variant={dark ? 'secondary' : 'outline'} size="sm">
+          <Link href="/admin/images">
+            <ImageIcon className="w-4 h-4 mr-2" />
+            All Images
+          </Link>
+        </Button>
+      </div>
+      {children}
     </div>
   );
 }

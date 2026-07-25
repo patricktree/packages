@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Clock, Image as ImageIcon, Trash2 } from 'lucide-react';
@@ -84,58 +84,39 @@ export default function AdminImagesPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
+      <PageShell>
+        <div className="text-center py-32">
           <Clock className="w-8 h-8 animate-spin mx-auto mb-4" />
           <p>Loading images...</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center text-red-600">
+      <PageShell>
+        <div className="text-center py-32 text-red-600">
           <p>Error loading images</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (images.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
+      <PageShell>
+        <div className="text-center py-32">
           <ImageIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h2 className="text-xl font-semibold text-gray-600 mb-2">No Images</h2>
-          <p className="text-gray-500 mb-4">Nothing has been uploaded yet.</p>
-          <Button asChild variant="outline">
-            <Link href="/admin/review">
-              <CheckCircle className="w-4 h-4 mr-2" />
-              Review
-            </Link>
-          </Button>
+          <p className="text-gray-500">Nothing has been uploaded yet.</p>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="flex justify-between items-center p-4">
-        <div>
-          <h1 className="text-xl font-bold">All Images</h1>
-          <p className="text-sm text-gray-600">{images.length} total</p>
-        </div>
-        <Button asChild variant="outline" size="sm">
-          <Link href="/admin/review">
-            <CheckCircle className="w-4 h-4 mr-2" />
-            Review
-          </Link>
-        </Button>
-      </div>
-
+    <PageShell subtitle={`${images.length} total`}>
       {deleteError && (
         <div className="mx-4 mb-4 flex items-center justify-between rounded bg-red-100 p-3 text-red-700">
           <p className="text-sm">{deleteError}</p>
@@ -186,6 +167,30 @@ export default function AdminImagesPage() {
           </div>
         ))}
       </div>
+    </PageShell>
+  );
+}
+
+/**
+ * Rendered by every branch of the page, so the header — and with it the link to the review page —
+ * sits in the same place no matter which state the page is in.
+ */
+function PageShell({ subtitle, children }: { subtitle?: string; children: ReactNode }) {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="flex justify-between items-center p-4">
+        <div>
+          <h1 className="text-xl font-bold">All Images</h1>
+          {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
+        </div>
+        <Button asChild variant="outline" size="sm">
+          <Link href="/admin/review">
+            <CheckCircle className="w-4 h-4 mr-2" />
+            Review
+          </Link>
+        </Button>
+      </div>
+      {children}
     </div>
   );
 }
