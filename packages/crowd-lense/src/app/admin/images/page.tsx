@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
-import { Clock, Image as ImageIcon, Trash2 } from 'lucide-react';
+import { CheckCircle, Clock, Image as ImageIcon, Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type AdminImage = {
   id: string;
@@ -108,7 +109,13 @@ export default function AdminImagesPage() {
         <div className="text-center">
           <ImageIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h2 className="text-xl font-semibold text-gray-600 mb-2">No Images</h2>
-          <p className="text-gray-500">Nothing has been uploaded yet.</p>
+          <p className="text-gray-500 mb-4">Nothing has been uploaded yet.</p>
+          <Button asChild variant="outline">
+            <Link href="/admin/review">
+              <CheckCircle className="w-4 h-4 mr-2" />
+              Review
+            </Link>
+          </Button>
         </div>
       </div>
     );
@@ -116,9 +123,17 @@ export default function AdminImagesPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="p-4">
-        <h1 className="text-xl font-bold">All Images</h1>
-        <p className="text-sm text-gray-600">{images.length} total</p>
+      <div className="flex justify-between items-center p-4">
+        <div>
+          <h1 className="text-xl font-bold">All Images</h1>
+          <p className="text-sm text-gray-600">{images.length} total</p>
+        </div>
+        <Button asChild variant="outline" size="sm">
+          <Link href="/admin/review">
+            <CheckCircle className="w-4 h-4 mr-2" />
+            Review
+          </Link>
+        </Button>
       </div>
 
       {deleteError && (

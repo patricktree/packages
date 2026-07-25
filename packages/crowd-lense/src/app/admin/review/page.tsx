@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle, Clock, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AdminPage() {
   const queryClient = useQueryClient();
@@ -87,7 +88,13 @@ export default function AdminPage() {
         <div className="text-center">
           <ImageIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h2 className="text-xl font-semibold text-gray-600 mb-2">No Pending Images</h2>
-          <p className="text-gray-500">All images have been reviewed!</p>
+          <p className="text-gray-500 mb-4">All images have been reviewed!</p>
+          <Button asChild variant="outline">
+            <Link href="/admin/images">
+              <ImageIcon className="w-4 h-4 mr-2" />
+              All Images
+            </Link>
+          </Button>
         </div>
       </div>
     );
@@ -104,7 +111,14 @@ export default function AdminPage() {
             <h1 className="text-xl font-bold">Admin Review</h1>
             <p className="text-sm text-gray-300">{images.length} pending</p>
           </div>
-          <div className="flex space-x-2"></div>
+          <div className="flex space-x-2">
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/admin/images">
+                <ImageIcon className="w-4 h-4 mr-2" />
+                All Images
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
 
