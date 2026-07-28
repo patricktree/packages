@@ -1,45 +1,43 @@
 {
   "name": "patricktree",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "superturbo run turbo:build",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
     "changeset": "changeset",
-    "format": "prettier --write --ignore-unknown .",
-    "lint": "superturbo run turbo:lint",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:node-modules",
-    "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
-    "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
-    "nuke:node-modules": "del-cli \"**/node_modules\"",
-    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky && pnpm exec add-all-tsconfigs-as-project-references --monorepo-path=. --tsconfig-filename=\"tsconfig.json\")",
-    "test": "pnpm --parallel run test"
+    "clean": "pnpm run --parallel clean && pnpm exec del-cli \"**/node_modules\" \"**/.turbo\"",
+    "declutter": "knip",
+    "fix": "pnpm run format && pnpm run lint:fix",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
+    "postinstall": "sh ./postinstall.sh",
+    "test": "turbo run turbo:test",
+    "validate": "turbo run turbo:build turbo:lint turbo:test && pnpm run declutter"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
-    "@patricktree/config-prettier": "workspace:*",
+    "@patricktree-stack/config-oxfmt": "workspace:*",
     "@patricktree/config-typescript": "workspace:*",
-    "@patricktree/eslint-config": "workspace:*",
-    "@patricktree/pkg-management": "^2.1.0",
-    "@patricktree/superturbo": "workspace:*",
+    "@typescript/native": "catalog:",
     "del-cli": "^5.1.0",
-    "eslint": "^8.57.1",
+    "eslint-plugin-react-you-might-not-need-an-effect": "^1.0.1",
     "husky": "^9.1.5",
-    "prettier": "^3.3.3",
-    "prettier-plugin-packagejson": "^2.5.2",
-    "turbo": "^2.7.2",
-    "typescript": "~5.9.3",
-    "zx": "^8.1.5"
+    "knip": "^6.24.0",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "turbo": "^2.10.3",
+    "typescript": "catalog:"
   },
-  "packageManager": "pnpm@10.26.2",
-  "engines": {
-    "pnpm": "10.26.2"
-  },
-  "pnpm": {
-    "updateConfig": {
-      "ignoreDependencies": [
-        "eslint",
-        "@types/eslint"
-      ]
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.18.0",
+      "onFail": "download"
     }
-  }
+  },
+  "packageManager": "pnpm@11.1.0"
 }

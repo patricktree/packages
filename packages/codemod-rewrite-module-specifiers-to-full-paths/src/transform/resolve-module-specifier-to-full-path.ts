@@ -1,33 +1,33 @@
-import path from 'node:path';
-import invariant from 'tiny-invariant';
-import ts from 'typescript';
+import path from "node:path";
+import invariant from "tiny-invariant";
+import ts from "typescript";
 
-import type { VisitorContext } from '#pkg/transform/types.js';
+import type { VisitorContext } from "#pkg/transform/types.js";
 
 const tsExtensionToJsExtensionMap = {
   /* map .d.ts and its variants to just .js */
-  '.d.ts': '.js',
-  '.d.tsx': '.js',
-  '.d.mts': '.mjs',
-  '.d.mtsx': '.mjs',
-  '.d.cts': '.cjs',
-  '.d.ctsx': '.cjs',
+  ".d.ts": ".js",
+  ".d.tsx": ".js",
+  ".d.mts": ".mjs",
+  ".d.mtsx": ".mjs",
+  ".d.cts": ".cjs",
+  ".d.ctsx": ".cjs",
 
   /* map .ts and its variants to .js */
-  '.ts': '.js',
-  '.tsx': '.js',
-  '.mts': '.mjs',
-  '.mtsx': '.mjs',
-  '.cts': '.cjs',
-  '.ctsx': '.cjs',
+  ".ts": ".js",
+  ".tsx": ".js",
+  ".mts": ".mjs",
+  ".mtsx": ".mjs",
+  ".cts": ".cjs",
+  ".ctsx": ".cjs",
 
   /* keep js extensions */
-  '.js': '.js',
-  '.jsx': '.jsx',
-  '.mjs': '.mjs',
-  '.mjsx': '.mjsx',
-  '.cjs': '.cjs',
-  '.cjsx': '.cjsx',
+  ".js": ".js",
+  ".jsx": ".jsx",
+  ".mjs": ".mjs",
+  ".mjsx": ".mjsx",
+  ".cjs": ".cjs",
+  ".cjsx": ".cjsx",
 } as const;
 
 export function resolveModuleSpecifierToFullPath(
@@ -94,9 +94,9 @@ export function resolveToExactModuleSpecifier(
     if (
       matchedPathsPattern &&
       // ignore patterns which do not have a star in them and thus, resolve to concrete file(s) anyways
-      typeof matchedPathsPattern !== 'string'
+      typeof matchedPathsPattern !== "string"
     ) {
-      if (matchedPathsPattern.suffix !== '') {
+      if (matchedPathsPattern.suffix !== "") {
         throw new TypeError(`patterns with suffixes are not supported`);
       }
       invariant(opts.compilerOptions.paths);
@@ -111,8 +111,8 @@ export function resolveToExactModuleSpecifier(
             // invalid pattern
             return undefined;
           }
-          const prefix = typeof parsedPattern === 'string' ? parsedPattern : parsedPattern.prefix;
-          const suffix = typeof parsedPattern === 'string' ? undefined : parsedPattern.suffix;
+          const prefix = typeof parsedPattern === "string" ? parsedPattern : parsedPattern.prefix;
+          const suffix = typeof parsedPattern === "string" ? undefined : parsedPattern.suffix;
           invariant(opts.paths);
           return {
             fullPrefix: path.join(opts.paths.absoluteBasePath, prefix),
@@ -168,7 +168,7 @@ export function resolveToExactModuleSpecifier(
       isRelativePathModuleSpecifier(opts.originalModuleSpecifier) ||
         isAbsolutePathModuleSpecifier(opts.originalModuleSpecifier),
     );
-    const moduleSpecifierAbsolutePath = opts.originalModuleSpecifier.startsWith('/')
+    const moduleSpecifierAbsolutePath = opts.originalModuleSpecifier.startsWith("/")
       ? opts.originalModuleSpecifier
       : path.join(path.dirname(opts.absolutePathSourceFile), opts.originalModuleSpecifier);
 
@@ -191,9 +191,9 @@ export function resolveToExactModuleSpecifier(
 }
 
 function isAbsolutePathModuleSpecifier(moduleSpecifier: string) {
-  return moduleSpecifier.startsWith('/');
+  return moduleSpecifier.startsWith("/");
 }
 
 function isRelativePathModuleSpecifier(moduleSpecifier: string) {
-  return moduleSpecifier.startsWith('.');
+  return moduleSpecifier.startsWith(".");
 }

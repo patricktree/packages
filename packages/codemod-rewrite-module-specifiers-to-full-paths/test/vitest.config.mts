@@ -1,17 +1,17 @@
-import { defineConfig, configDefaults } from 'vitest/config';
+import { defineConfig, configDefaults } from "vitest/config";
 
 const config = defineConfig({
   test: {
     coverage: {
-      provider: 'v8',
-      reporter: ['lcovonly'],
+      provider: "v8",
+      reporter: ["lcovonly"],
       enabled: true,
       exclude: configDefaults.coverage.exclude ?? [],
     },
 
     /**
-     * disabling {@link https://vitest.dev/config/isolate.html} to improve performance and enable worker
-     * fixtures ({@link https://vitest.dev/guide/test-context.html#per-scope-context-3-2-0})
+     * Disabling {@link https://vitest.dev/config/isolate.html} to improve performance and enable
+     * worker fixtures ({@link https://vitest.dev/guide/test-context.html#per-scope-context-3-2-0})
      */
     isolate: false,
   },

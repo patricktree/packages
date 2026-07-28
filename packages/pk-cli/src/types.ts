@@ -1,4 +1,4 @@
-import type { ReadableStream } from 'node:stream/web';
+import type { ReadableStream } from "node:stream/web";
 
 export type Command = (
   opts: // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this type is used with `satisfies`, we don't mind about this any here

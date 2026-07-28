@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 
-import { check } from '@patricktree/commons-ecma/util/assert';
+import { check } from "@patricktree/commons-ecma/util/assert";
 
 export const fsUtils = {
   createTemporaryDirectory,
@@ -11,15 +11,15 @@ export const fsUtils = {
 
 async function createTemporaryDirectory(opts?: { withinDirectory: string }): Promise<string> {
   const withinDirectory = opts?.withinDirectory ?? os.tmpdir();
-  return fs.promises.mkdtemp(path.join(withinDirectory, 'tmp-dir-'));
+  return fs.promises.mkdtemp(path.join(withinDirectory, "tmp-dir-"));
 }
 
-async function existsPath(path: string): Promise<boolean> {
+async function existsPath(pathToCheck: string): Promise<boolean> {
   try {
-    await fs.promises.access(path);
+    await fs.promises.access(pathToCheck);
     return true;
   } catch (error) {
-    if (check.isNotNullish(error) && error['code'] === 'ENOENT') {
+    if (check.isNotNullish(error) && error["code"] === "ENOENT") {
       return false;
     }
 

@@ -5,19 +5,12 @@
   "bugs": {
     "url": "https://github.com/patricktree/packages/issues"
   },
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/patricktree/packages",
     "directory": "packages/pkg-consumption-test"
-  },
-  "license": "MIT",
-  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
-  "type": "module",
-  "imports": {
-    "#pkg/*": "./dist/*"
-  },
-  "exports": {
-    ".": "./dist/start-test.js"
   },
   "bin": {
     "pkg-consumption-test": "./pkg-consumption-test.js"
@@ -28,19 +21,27 @@
     "/pkg-consumption-test.js",
     "/README.md"
   ],
+  "type": "module",
+  "imports": {
+    "#pkg/*": "./dist/*"
+  },
+  "exports": {
+    ".": "./dist/start-test.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "superturbo run turbo:build",
-    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "superturbo run turbo:lint",
-    "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
     "prepublishOnly": "pnpm run build",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint:file . --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 .",
+    "turbo:lint:fix": "pnpm run turbo:lint --fix"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
@@ -52,10 +53,12 @@
     "zx": "^8.1.5"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@verdaccio/types": "10.8.0"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@patricktree-stack/config-oxlint": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "@verdaccio/types": "10.8.0",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "typescript": "catalog:"
   }
 }

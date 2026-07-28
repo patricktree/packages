@@ -1,17 +1,17 @@
-import * as commander from '@commander-js/extra-typings';
-import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
-import fs from 'node:fs';
-import path from 'node:path';
-import { $ } from 'zx';
+import * as commander from "@commander-js/extra-typings";
+import { findWorkspacePackagesNoCheck } from "@pnpm/find-workspace-packages";
+import fs from "node:fs";
+import path from "node:path";
+import { $ } from "zx";
 
-import { check } from '@patricktree/commons-ecma/util/assert';
-import { fsUtils } from '@patricktree/commons-node/utils/fs';
+import { check } from "@patricktree/commons-ecma/util/assert";
+import { fsUtils } from "@patricktree/commons-node/utils/fs";
 
 const program = new commander.Command()
-  .addOption(new commander.Option('--monorepo-path <path>').makeOptionMandatory())
+  .addOption(new commander.Option("--monorepo-path <path>").makeOptionMandatory())
   .addOption(
     new commander.Option(
-      '--tsconfig-filename <name>',
+      "--tsconfig-filename <name>",
       'e.g. "tsconfig.json"',
     ).makeOptionMandatory(),
   );
@@ -28,14 +28,12 @@ const tsconfigPaths = (
   await Promise.all(
     workspaceProjects.map(async (project) => {
       const tsconfigPath = path.join(project.dir, opts.tsconfigFilename);
-      if (await fsUtils.existsPath(tsconfigPath)) {
-        return tsconfigPath;
-      }
+      return (await fsUtils.existsPath(tsconfigPath)) ? tsconfigPath : undefined;
     }),
   )
 ).filter(check.isNonEmptyString);
 
-const pathToMonorepoTsconfig = path.join(absoluteMonorepoPath, 'tsconfig.json');
+const pathToMonorepoTsconfig = path.join(absoluteMonorepoPath, "tsconfig.json");
 await fs.promises.writeFile(
   pathToMonorepoTsconfig,
   JSON.stringify({

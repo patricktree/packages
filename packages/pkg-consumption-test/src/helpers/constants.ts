@@ -1,6 +1,6 @@
-import path from 'node:path';
+import path from "node:path";
 
-import { fsUtils } from '@patricktree/commons-node/utils/fs';
+import { fsUtils } from "@patricktree/commons-node/utils/fs";
 
 const [VERDACCIO_TEMP_FOLDER, TEMP_FOLDER] = await Promise.all([
   fsUtils.createTemporaryDirectory(),
@@ -9,8 +9,8 @@ const [VERDACCIO_TEMP_FOLDER, TEMP_FOLDER] = await Promise.all([
 
 export const PATHS = {
   VERDACCIO_TEMP_FOLDER,
-  VERDACCIO_TEMP_FOLDER_CACHE: path.join(VERDACCIO_TEMP_FOLDER, 'cache'),
-  VERDACCIO_TEMP_FOLDER_STORAGE: path.join(VERDACCIO_TEMP_FOLDER, 'storage'),
+  VERDACCIO_TEMP_FOLDER_CACHE: path.join(VERDACCIO_TEMP_FOLDER, "cache"),
+  VERDACCIO_TEMP_FOLDER_STORAGE: path.join(VERDACCIO_TEMP_FOLDER, "storage"),
   TEMP_FOLDER,
-  TEMP_NPMRC: path.join(TEMP_FOLDER, '.npmrc'),
+  TEMP_NPMRC: path.join(TEMP_FOLDER, ".npmrc"),
 } as const;

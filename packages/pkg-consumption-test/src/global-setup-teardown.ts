@@ -1,11 +1,11 @@
-import type { Config } from '@verdaccio/types';
-import fs from 'node:fs';
-import * as verdaccio from 'verdaccio';
-import { $ } from 'zx';
+import type { Config } from "@verdaccio/types";
+import fs from "node:fs";
+import * as verdaccio from "verdaccio";
+import { $ } from "zx";
 
-import { PATHS } from '#pkg/helpers/constants.js';
-import { fsUtil } from '#pkg/helpers/fs-util.js';
-import { networkUtil } from '#pkg/helpers/network-util.js';
+import { PATHS } from "#pkg/helpers/constants.js";
+import { fsUtil } from "#pkg/helpers/fs-util.js";
+import { networkUtil } from "#pkg/helpers/network-util.js";
 
 type VerdaccioServer = {
   closeAndCleanup: () => Promise<void>;
@@ -33,12 +33,14 @@ export async function setup(options: SetupOptions) {
    * will fetch the dependencies from Verdaccio.
    */
   /* eslint-disable n/no-process-env */
-  let npmrcContent = '';
+  /* pnpm 11 rejects an `_auth` value that is not valid base64 with "[ERROR] Invalid character" */
+  const fakeAuth = Buffer.from("fake-user:fake-password").toString("base64");
+  let npmrcContent = "";
   npmrcContent += `registry=http://localhost:${verdaccioPort}/\n`;
-  npmrcContent += `//localhost:${verdaccioPort}/:_auth=fake-auth-token\n`;
-  process.env['npm_config_registry'] = `http://localhost:${verdaccioPort}/\n`;
+  npmrcContent += `//localhost:${verdaccioPort}/:_auth=${fakeAuth}\n`;
+  process.env["npm_config_registry"] = `http://localhost:${verdaccioPort}/\n`;
   await fs.promises.mkdir(PATHS.TEMP_FOLDER, { recursive: true });
-  await fs.promises.writeFile(PATHS.TEMP_NPMRC, npmrcContent, 'utf8');
+  await fs.promises.writeFile(PATHS.TEMP_NPMRC, npmrcContent, "utf8");
   /* eslint-enable n/no-process-env */
   await publishToVerdaccio(options.absolutePathToPackageRoot);
 }
@@ -63,33 +65,35 @@ async function startVerdaccioServer(
   const cache = PATHS.VERDACCIO_TEMP_FOLDER_CACHE;
   const config: Omit<
     Config,
-    'server_id' | 'secret' | 'checkSecretKey' | 'getMatchedPackagesSpec' | 'security'
+    "server_id" | "secret" | "checkSecretKey" | "getMatchedPackagesSpec" | "security"
   > = {
     uplinks: {
       npmjs: {
-        url: 'https://registry.npmjs.org/',
+        url: "https://registry.npmjs.org/",
       },
     },
     packages: {
       [packageName]: {
-        access: ['$all'],
-        publish: ['$all'],
+        access: ["$all"],
+        publish: ["$all"],
       },
-      '@*/*': {
-        access: ['$all'],
-        publish: ['$all'],
-        proxy: ['npmjs'],
+      "@*/*": {
+        access: ["$all"],
+        publish: ["$all"],
+        proxy: ["npmjs"],
       },
-      '**': {
-        access: ['$all'],
-        publish: ['$all'],
-        proxy: ['npmjs'],
+      "**": {
+        access: ["$all"],
+        publish: ["$all"],
+        proxy: ["npmjs"],
       },
     },
     storage: PATHS.VERDACCIO_TEMP_FOLDER_STORAGE,
     self_path: cache,
   };
 
+  /* verdaccio's `Config` type demands many fields it fills in with defaults itself */
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const app = await verdaccio.runServer(config as Config);
   await new Promise<void>((resolve, reject) => {
     console.info(`[Verdaccio] starting server on port ${portToStartOn}`);
@@ -97,7 +101,7 @@ async function startVerdaccioServer(
       console.info(`[Verdaccio] server started!`);
       resolve();
     });
-    app.on('error', reject);
+    app.on("error", reject);
   });
 
   async function closeServer(): Promise<void> {

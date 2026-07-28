@@ -1,4 +1,4 @@
-import invariant from 'tiny-invariant';
+import invariant from "tiny-invariant";
 
 export const functions = {
   noop,
@@ -71,14 +71,14 @@ function throttle<ThisType, Params extends unknown[]>(
     scheduledTimeoutId = undefined;
 
     /**
-     * If there was a function invocation which was discarded because throttle was active,
-     * execute a "trailing call", i.e. execute that function invocation now.
+     * If there was a function invocation which was discarded because throttle was active, execute a
+     * "trailing call", i.e. execute that function invocation now.
      *
      * Imagine a popover "follows" a moving target by updating its position via a throttled
-     * "updatePosition" function and a relatively high "limit" set. If we would not execute the
-     * last discarded function invocation, the "updatePosition" invocation which would put the
-     * popover in its final position (after the target stopped moving) would not execute -
-     * the popover would just "hang" in a wrong position.
+     * "updatePosition" function and a relatively high "limit" set. If we would not execute the last
+     * discarded function invocation, the "updatePosition" invocation which would put the popover in
+     * its final position (after the target stopped moving) would not execute - the popover would
+     * just "hang" in a wrong position.
      */
     if (lastDiscardedFnInvocation) {
       try {

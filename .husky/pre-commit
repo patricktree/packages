@@ -1,4 +1,2 @@
-pnpm exec prettier --ignore-unknown --check .
-pnpm run build
-pnpm run lint
-pnpm exec prettier --ignore-unknown --check .
+pnpm run format:check
+pnpm run validate

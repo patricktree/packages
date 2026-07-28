@@ -1,8 +1,8 @@
-import path from 'node:path';
-import invariant from 'tiny-invariant';
-import ts from 'typescript';
+import path from "node:path";
+import invariant from "tiny-invariant";
+import ts from "typescript";
 
-import { fsUtils } from '@patricktree/commons-node/utils/fs';
+import { fsUtils } from "@patricktree/commons-node/utils/fs";
 
 export type TypeScriptProgram = {
   compilerOptions: ts.CompilerOptions;

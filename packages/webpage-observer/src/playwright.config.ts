@@ -1,8 +1,8 @@
-import { defineConfig, devices, type ReporterDescription } from '@playwright/test';
-import os from 'node:os';
+import { defineConfig, devices, type ReporterDescription } from "@playwright/test";
+import os from "node:os";
 
-import { config } from '#pkg/config.js';
-import { playwrightBrowser, playwrightServerPortEnvVarName } from '#pkg/constants.js';
+import { config } from "#pkg/config.js";
+import { playwrightBrowser, playwrightServerPortEnvVarName } from "#pkg/constants.js";
 
 const countOfCpus = os.cpus().length;
 const workers = countOfCpus
@@ -11,37 +11,35 @@ const workers = countOfCpus
   : undefined;
 
 const htmlReporter: ReporterDescription = [
-  'html',
-  { open: 'never', outputFolder: '../playwright-html-report' },
+  "html",
+  { open: "never", outputFolder: "../playwright-html-report" },
 ];
 
 // eslint-disable-next-line import/no-default-export -- needs to be default export for Playwright
 export default defineConfig({
   fullyParallel: true,
-  reporter: config.CI ? [['github'], htmlReporter] : [['list'], htmlReporter],
-  testMatch: ['*.spec.js'],
+  reporter: config.CI ? [["github"], htmlReporter] : [["list"], htmlReporter],
+  testMatch: ["*.spec.js"],
   globalTimeout: 1000 * 8 * 60, // 8 minutes
   projects: [
     {
-      name: 'chromium',
+      name: "chromium",
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices["Desktop Chrome"],
         // opt into "New Headless" chromium (https://playwright.dev/docs/browsers#chromium-new-headless-mode, https://developer.chrome.com/docs/chromium/headless)
-        channel: 'chromium',
+        channel: "chromium",
       },
     },
   ],
 
-  /**
-   * increase timeout to 30 minutes and set workers count to 1 if we are in a debugging session
-   */
+  /** Increase timeout to 30 minutes and set workers count to 1 if we are in a debugging session */
   timeout: config.isDebuggingSession ? 1000 * 60 * 30 : undefined,
   workers: config.isDebuggingSession ? 1 : workers,
 
   // fail a Playwright run in CI if some test.only is in the source code
   forbidOnly: !!config.CI,
 
-  snapshotPathTemplate: `{testDir}/../snapshots/{testFilePath}/{arg}-{projectName}-${playwrightBrowser === 'docker' ? 'docker' : '{platform}'}{ext}`,
+  snapshotPathTemplate: `{testDir}/../snapshots/{testFilePath}/{arg}-{projectName}-${playwrightBrowser === "docker" ? "docker" : "{platform}"}{ext}`,
 
   expect: {
     toHaveScreenshot: {
@@ -51,17 +49,17 @@ export default defineConfig({
 
   use: {
     /* have consistent timezone and locale */
-    timezoneId: 'Europe/Vienna',
-    locale: 'de-AT',
+    timezoneId: "Europe/Vienna",
+    locale: "de-AT",
 
     // always capture trace (seems to not have any performance impact)
-    trace: 'on',
+    trace: "on",
 
     // always capture video (seems to not have any performance impact)
-    video: 'on',
+    video: "on",
 
     connectOptions:
-      playwrightBrowser === 'docker'
+      playwrightBrowser === "docker"
         ? {
             wsEndpoint: `ws://127.0.0.1:${
               // eslint-disable-next-line n/no-process-env -- port provided by Playwright server stdout via regex (see webServer.wait.stdout)
@@ -72,7 +70,7 @@ export default defineConfig({
   },
 
   webServer:
-    playwrightBrowser === 'docker'
+    playwrightBrowser === "docker"
       ? {
           // start the Playwright server in a docker container
           command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.58.2-noble /bin/sh -c "npx -y playwright@1.58.2 run-server --host 0.0.0.0"`,
@@ -83,11 +81,11 @@ export default defineConfig({
               String.raw`Listening on ws:\/\/0\.0\.0\.0:(?<${playwrightServerPortEnvVarName}>\d+)`,
             ),
           },
-          stdout: 'pipe',
-          stderr: 'pipe',
+          stdout: "pipe",
+          stderr: "pipe",
           timeout: 30_000,
           gracefulShutdown: {
-            signal: 'SIGTERM',
+            signal: "SIGTERM",
             timeout: 10_000,
           },
           reuseExistingServer: !config.CI,
