@@ -4,6 +4,8 @@ import ts from "typescript";
 
 import { fsUtils } from "@patricktree/commons-node/utils/fs";
 
+import { logger } from "#pkg/otel-logger.js";
+
 export type TypeScriptProgram = {
   compilerOptions: ts.CompilerOptions;
   paths:
@@ -20,6 +22,10 @@ export async function loadTypeScriptProgram(opts: {
   basepath?: string | undefined;
 }): Promise<TypeScriptProgram> {
   const projectAbsolutePath = path.resolve(opts.project);
+  logger.debug("Loading TypeScript program", {
+    projectAbsolutePath,
+    ...(opts.basepath ? { basepath: opts.basepath } : {}),
+  });
   invariant(
     await fsUtils.existsPath(projectAbsolutePath),
     `expected to find project, but did not! projectAbsolutePath=${projectAbsolutePath}`,
@@ -39,6 +45,10 @@ export async function loadTypeScriptProgram(opts: {
   );
 
   const paths = computePathsContext(compilerOptions);
+  logger.debug("Parsed TypeScript config", {
+    fileCount: fileNames.length,
+    hasPaths: !!paths,
+  });
 
   return {
     compilerOptions,

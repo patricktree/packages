@@ -8,7 +8,8 @@
     "paths": {
       "#pkg/*": ["./src/*"]
     },
-    "types": ["node"]
+    "types": ["node"],
+    "jsx": "preserve"
   },
   "include": ["src/**/*"]
 }
