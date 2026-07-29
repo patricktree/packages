@@ -1,10 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { normalize } from 'pathe';
-import { $ } from 'zx';
+import fs from "node:fs";
+import path from "node:path";
+import { normalize } from "pathe";
+import { $ } from "zx";
 
-import { setup, teardown } from '#pkg/global-setup-teardown.js';
-import { fsUtil } from '#pkg/helpers/fs-util.js';
+import { setup, teardown } from "#pkg/global-setup-teardown.js";
+import { fsUtil } from "#pkg/helpers/fs-util.js";
 
 type RunTestOption = {
   packageName: string;
@@ -45,7 +45,7 @@ export async function startTest(options: RunTestOption) {
       $.cwd = pathToDirectory;
 
       // cleanup node_modules of that scenario and install dependencies
-      await fsUtil.cleanupDirectory(path.join(pathToDirectory, 'node_modules'));
+      await fsUtil.cleanupDirectory(path.join(pathToDirectory, "node_modules"));
       await $`npm install --package-lock=false`;
 
       // execute scenario

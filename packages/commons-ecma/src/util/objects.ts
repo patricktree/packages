@@ -1,4 +1,4 @@
-import type { ObjectLiteral } from '#pkg/util/types.js';
+import type { ObjectLiteral } from "#pkg/util/types.js";
 
 export const objects = {
   shallowCopy,
@@ -7,7 +7,7 @@ export const objects = {
 };
 
 function shallowCopy<T>(inObject: T): T {
-  return typeof inObject !== 'object' || inObject === null
+  return typeof inObject !== "object" || inObject === null
     ? // Return the value if inObject is not an object
       inObject
     : // shallow copy via object spread
@@ -25,9 +25,7 @@ function shallowIsEqual(obj1: ObjectLiteral, objToCompareWith: ObjectLiteral) {
   );
 }
 
-/**
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
- */
+/** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy */
 export function groupBy<T, U extends string | number | symbol>(
   items: Iterable<T>,
   callbackFn: (element: T, index: number) => U,

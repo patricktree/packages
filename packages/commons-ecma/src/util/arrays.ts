@@ -1,4 +1,4 @@
-import invariant from 'tiny-invariant';
+import invariant from "tiny-invariant";
 
 export const arrays = {
   uniqueValues,
@@ -29,6 +29,9 @@ function shallowCopy<T>(array: T[]): T[] {
 }
 
 function reverse<T>(array: T[]): T[] {
+  /* the input is already copied, so reversing in place does not mutate the caller's array.
+     `Array#toReversed()` would need a lib newer than this package's ES2018 target. */
+  // oxlint-disable-next-line unicorn/no-array-reverse
   return shallowCopy(array).reverse();
 }
 
@@ -47,7 +50,7 @@ function partitionArray<T>(
   const partitions: T[][] = [];
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if ('countOfPartitions' in options && options.countOfPartitions !== undefined) {
+  if ("countOfPartitions" in options && options.countOfPartitions !== undefined) {
     const { countOfPartitions } = options;
 
     for (let i = 0; i < countOfPartitions; i++) {
@@ -59,7 +62,7 @@ function partitionArray<T>(
       partitionToAddTo.push(item);
     }
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  } else if ('itemsPerPartition' in options && options.itemsPerPartition !== undefined) {
+  } else if ("itemsPerPartition" in options && options.itemsPerPartition !== undefined) {
     const { itemsPerPartition } = options;
 
     let currentPartition: T[] = [];

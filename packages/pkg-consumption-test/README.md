@@ -70,7 +70,7 @@ For example, imagine you want to create a scenario which imports and runs the pa
 1. Add the file `src/test.mjs`:
 
    ```js
-   import invariant from 'tiny-invariant';
+   import invariant from "tiny-invariant";
 
    invariant(true);
    ```

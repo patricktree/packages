@@ -11,8 +11,8 @@ For example, while the following `require` function calls were working in Node.j
 
 ```js
 /* assuming ./some-directory/index.js is present */
-require('./some-directory');
-require('./some-directory/index');
+require("./some-directory");
+require("./some-directory/index");
 ```
 
 Therefore, migrating CJS code to ESM code involves rewriting every module specifier to its full path.  

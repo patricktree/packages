@@ -8,13 +8,21 @@
   "bugs": {
     "url": "https://github.com/patricktree/typescript-eslint-rules-requiring-type-info/issues"
   },
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/patricktree/packages",
     "directory": "packages/typescript-eslint-rules-requiring-type-info"
   },
-  "license": "MIT",
-  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "imports": {
     "#pkg/*": "./dist/*"
   },
@@ -24,41 +32,37 @@
       "default": "./dist/index.js"
     }
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**/*",
-    "src/**/*",
-    "LICENSE",
-    "README.md"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "superturbo run turbo:build",
-    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "superturbo run turbo:lint",
-    "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
-    "prepack": "pnpm run nuke:artifacts && pnpm run build",
-    "test": "pnpm run test:pkg-consumption",
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
+    "prepack": "pnpm run clean && pnpm run build",
+    "test": "turbo run turbo:test",
     "test:pkg-consumption": "pkg-consumption-test --packageName=\"@patricktree/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\"",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint:file . --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 .",
+    "turbo:lint:fix": "pnpm run turbo:lint --fix",
+    "turbo:test": "pnpm run test:pkg-consumption"
   },
   "dependencies": {
     "axios": "^1.7.7",
     "jsdom": "^25.0.0"
   },
   "devDependencies": {
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@patricktree/pkg-consumption-test": "workspace:*",
     "@types/eslint": "^8.56.12",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^20"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "typescript": "catalog:"
   }
 }

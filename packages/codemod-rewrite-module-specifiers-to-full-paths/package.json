@@ -5,14 +5,26 @@
   "bugs": {
     "url": "https://github.com/patricktree/packages/issues"
   },
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/patricktree/packages",
     "directory": "packages/codemod-rewrite-module-specifiers-to-full-paths"
   },
-  "license": "MIT",
-  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "bin": "./dist/bin/codemod.js",
+  "files": [
+    "dist/**",
+    "!dist/**/*.d.ts.map"
+  ],
   "type": "module",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "imports": {
     "#pkg/*": "./dist/*",
     "#pkg-test/*": "./test/*"
@@ -21,35 +33,24 @@
     ".": "./dist/index.js",
     "./*": "./dist/*.js"
   },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ]
-    }
+  "publishConfig": {
+    "access": "public"
   },
-  "bin": "./dist/bin/codemod.js",
-  "files": [
-    "dist/**",
-    "!dist/**/*.d.ts.map"
-  ],
   "scripts": {
-    "build": "superturbo run turbo:build",
-    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "superturbo run turbo:lint",
-    "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
-    "test": "vitest run --config=\"./test/vitest.config.mts\"",
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
+    "test": "turbo run turbo:test",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint:file . --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 .",
+    "turbo:lint:fix": "pnpm run turbo:lint --fix",
+    "turbo:test": "vitest run --config=\"./test/vitest.config.mts\""
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
-    "@patricktree/commons-ecma": "workspace:*",
     "@patricktree/commons-node": "workspace:*",
     "commander": "^12.1.0",
     "jscodeshift": "^17.0.0",
@@ -58,14 +59,15 @@
     "typescript": "~5.9.3"
   },
   "devDependencies": {
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@patricktree/runtime-extensions-node": "workspace:*",
     "@types/jscodeshift": "^0.11.11",
-    "@types/node": "^20",
-    "@vitest/coverage-v8": "^4.0.16",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "ts-expose-internals": "^5.5.4",
-    "vitest": "^4.0.16"
-  },
-  "publishConfig": {
-    "access": "public"
+    "vitest": "catalog:"
   }
 }

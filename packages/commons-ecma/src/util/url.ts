@@ -1,4 +1,4 @@
-import { check } from '#pkg/util/assert.js';
+import { check } from "#pkg/util/assert.js";
 
 export const urlUtils = { createReadableTextFromUrl, generateUrlFragmentFromText };
 
@@ -18,12 +18,10 @@ function createReadableTextFromUrl(url: URL): string {
   return generatedText;
 }
 
-/**
- * https://tomekdev.com/posts/anchors-for-headings-in-mdx#override-heading-component
- */
+/** https://tomekdev.com/posts/anchors-for-headings-in-mdx#override-heading-component */
 function generateUrlFragmentFromText(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\d a-z]/g, '')
-    .replace(/ /g, '-');
+    .replace(/[^\d a-z]/g, "")
+    .replace(/ /g, "-");
 }

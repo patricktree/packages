@@ -1,4 +1,4 @@
-name: '🔎 CI'
+name: "🔎 CI"
 
 # configure concurrency: cancel pending and in-progress workflow runs if a new commit to the same branch is pushed (`github.head_ref` is the source branch of PRs)
 concurrency:
@@ -28,9 +28,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          submodules: true
 
-      - name: Bootstrap monorepo
-        uses: ./.github/actions/bootstrap-monorepo
+      - name: Bootstrap repository
+        uses: ./.patricktree-stack/.github/actions/bootstrap-repo
 
       - name: Build
         run: pnpm run build

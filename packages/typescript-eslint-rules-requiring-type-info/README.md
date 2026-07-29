@@ -44,25 +44,25 @@ This package exposes two functions to help accomplish this idea:
    ```js
    const {
      removeTypeInfoRules,
-   } = require('@patricktree/typescript-eslint-rules-requiring-type-info');
+   } = require("@patricktree/typescript-eslint-rules-requiring-type-info");
 
-   const applyHeavyRules = process.env.APPLY_HEAVY_RULES === 'true';
+   const applyHeavyRules = process.env.APPLY_HEAVY_RULES === "true";
 
    /**
     * @type {any}
     */
    const eslintConfig = {
      root: true,
-     parser: '@typescript-eslint/parser',
+     parser: "@typescript-eslint/parser",
      parserOptions: {
        tsconfigRootDir: __dirname,
-       project: './tsconfig.json',
+       project: "./tsconfig.json",
      },
-     plugins: ['@typescript-eslint/eslint-plugin'],
+     plugins: ["@typescript-eslint/eslint-plugin"],
      extends: [
-       'eslint:recommended',
-       'plugin:@typescript-eslint/recommended',
-       'plugin:@typescript-eslint/recommended-requiring-type-checking',
+       "eslint:recommended",
+       "plugin:@typescript-eslint/recommended",
+       "plugin:@typescript-eslint/recommended-requiring-type-checking",
      ],
    };
 
