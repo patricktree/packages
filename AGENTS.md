@@ -2,35 +2,37 @@
 
 ## Project Structure & Module Organization
 
-- `packages/*`: TypeScript libraries and CLIs with `src/`, `tsconfig.json`, and `turbo.json`; builds emit to `dist/`.
-- `platform/*`: shared tooling packages (`eslint-config`, `config-typescript`, `superturbo`) used across the workspace.
-- `test/*`: fixture packages (e.g., `test/test-package-for-pkg-consumption-test`) used in integration scenarios.
-- `patches/`: patched dependencies (TypeScript patch referenced in `package.json#pnpm.patchedDependencies`).
-- Root files: `tsconfig.json` references all projects; `turbo.json` coordinates build/lint; `.nvmrc` and `pnpm-workspace.yaml` define runtime and workspace scope.
+- `packages/*`: TypeScript libraries and CLIs with `src/`, `tsconfig.json`, and `turbo.jsonc`; builds emit to `dist/`.
+- `platform/*`: shared tooling packages (`config-typescript`) used across the workspace.
+- `.patricktree-stack/`: git submodule with the shared baseline (oxfmt/oxlint/turbo configs, GitHub Actions) used by all patricktree monorepos. Do not edit it from here; change it in its own repository.
+- Root files: `turbo.jsonc` coordinates build/lint/test; `pnpm-workspace.yaml` defines the workspace scope and the dependency catalogs; `package.json#devEngines.runtime` pins the Node.js version.
 
 ## Build, Test, and Development Commands
 
-- `pnpm install`: bootstrap with workspace `pnpm` (`package.json#packageManager`)
-- `pnpm build`: run `superturbo build` across packages (turbo cache disabled by design).
-- `pnpm lint` / `pnpm lint:fix`: lint after builds per `turbo.json` dependencies; auto-fix with `lint:fix`.
-- `pnpm format`: apply Prettier across the workspace.
-- `pnpm --filter <pkg> run dev`: package-level watch/compile loop when available (e.g., codemods, pkg-consumption-test).
-- `pnpm --filter <pkg> test`: run package tests.
-- `pnpm nuke`, `pnpm nuke:artifacts`, `pnpm nuke:node-modules`: clean builds, cache folders, and `node_modules`.
-- Validation when you think you are finished: `pnpm install && pnpm run format && pnpm run build && pnpm run lint:fix`.
+- `pnpm install`: bootstrap with workspace `pnpm` (`package.json#packageManager`); Node.js comes from `devEngines.runtime`.
+- `pnpm build`: run `turbo run turbo:build` across packages.
+- `pnpm lint` / `pnpm lint:fix`: lint with oxlint after builds per `turbo.jsonc` dependencies; auto-fix with `lint:fix`.
+- `pnpm format` / `pnpm format:check`: apply/check oxfmt across the workspace.
+- `pnpm fix`: `format` followed by `lint:fix`.
+- `pnpm declutter`: run knip to find unused files, exports and dependencies.
+- `pnpm validate`: build, lint, test and `declutter` in one go.
+- `pnpm --filter <pkg> run build:watch`: package-level watch/compile loop.
+- `pnpm clean`: remove build artifacts, turbo caches and `node_modules`.
+- Validation when you think you are finished: `pnpm install && pnpm run fix && pnpm run validate && pnpm run format:check`.
 
 ## Coding Style & Naming Conventions
 
-- TypeScript-first; follow shared configs from `@patricktree/eslint-config` and `@patricktree/config-typescript`.
-- Format with Prettier
+- TypeScript-first; follow the shared configs from `@patricktree-stack/config-oxlint`, `@patricktree-stack/config-oxfmt` and `@patricktree/config-typescript`.
+- Format with oxfmt; lint with oxlint (`--type-aware`).
+- `typescript` resolves to `@typescript/typescript6` and `@typescript/native` to TypeScript 7, both via the pnpm catalog in `pnpm-workspace.yaml`. Add them as `catalog:` entries, never as literal versions.
 - Prefer `camelCase` for functions/variables, `PascalCase` for types/classes, and lower-case descriptive filenames under `src/`.
-- Only disable ESLint rules when there is truly no other viable option; prefer code or config fixes instead.
+- Only disable oxlint rules when there is truly no other viable option; prefer code or config fixes instead, and always state the reason in a comment.
 - Respect each package's module target (CommonJS vs ESM) and keep exports aligned with existing `package.json` fields.
 
 ## Testing Guidelines
 
 - Use Vitest where present; co-locate specs alongside source with clear, discoverable names.
-- Create "package consumption scenarios" tests like `packages/typescript-eslint-rules-requiring-type-info/test-pkg-consumption-scenarios` and `test/test-package-for-pkg-consumption-test`.
+- Create "package consumption scenarios" tests like `packages/typescript-eslint-rules-requiring-type-info/test-pkg-consumption-scenarios`.
 - Before PRs, run targeted tests via `pnpm --filter <pkg> test`.
 
 ## Commit & Pull Request Guidelines
