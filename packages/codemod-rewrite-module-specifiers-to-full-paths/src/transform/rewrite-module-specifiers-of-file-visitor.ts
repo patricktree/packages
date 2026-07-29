@@ -2,6 +2,7 @@
 import jscodeshift from "jscodeshift";
 import invariant from "tiny-invariant";
 
+import { logger } from "#pkg/otel-logger.js";
 import { resolveModuleSpecifierToFullPath } from "#pkg/transform/resolve-module-specifier-to-full-path.js";
 import type { VisitorContext } from "#pkg/transform/types.js";
 
@@ -22,7 +23,11 @@ export function rewriteModuleSpecifiersOfFileVisitor(
    */
   const quoteToUseRef: QuoteToUseRef = { value: undefined };
 
-  const root = jscodeshift.withParser("tsx")(opts.text);
+  const parser =
+    opts.absolutePathSourceFile.endsWith("jsx") || opts.absolutePathSourceFile.endsWith("tsx")
+      ? "tsx"
+      : "ts";
+  const root = jscodeshift.withParser(parser)(opts.text);
   const astNodesWithModuleSpecifiers = [
     /**
      * @example
@@ -148,17 +153,11 @@ function rewriteModuleSpecifiersOfASTNodes(
       // eslint-disable-next-line unicorn/no-array-for-each -- false positive
       .forEach((path) => {
         // store the quote style used for the module specifier
-        invariant(
-          "extra" in path.node &&
-            typeof path.node.extra === "object" &&
-            path.node.extra !== null &&
-            "raw" in path.node.extra &&
-            typeof path.node.extra.raw === "string" &&
-            (path.node.extra.raw.startsWith('"') || path.node.extra.raw.startsWith("'")),
-        );
-        if (path.node.extra.raw.startsWith("'")) {
+        const raw = path.node.extra?.raw;
+        invariant(typeof raw === "string" && (raw.startsWith('"') || raw.startsWith("'")));
+        if (raw.startsWith("'")) {
           opts.quoteToUseRef.value = "single";
-        } else if (path.node.extra.raw.startsWith('"')) {
+        } else if (raw.startsWith('"')) {
           opts.quoteToUseRef.value = "double";
         }
 
@@ -168,6 +167,13 @@ function rewriteModuleSpecifiersOfASTNodes(
           ...opts,
           originalModuleSpecifier,
         });
+        if (newModuleSpecifier !== originalModuleSpecifier) {
+          logger.debug("Rewrote module specifier", {
+            absolutePathSourceFile: opts.absolutePathSourceFile,
+            originalModuleSpecifier,
+            newModuleSpecifier,
+          });
+        }
         path.node.value = newModuleSpecifier;
       })
   );
