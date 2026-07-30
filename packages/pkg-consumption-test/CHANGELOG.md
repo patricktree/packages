@@ -1,5 +1,18 @@
 # @patricktree/pkg-consumption-test
 
+## 1.0.8
+
+### Patch Changes
+
+- 9183e69: Build the published output with TypeScript 6 (`@typescript/typescript6`) instead of TypeScript 5.9. The compiler options and the ES2018 target are unchanged, so the emitted API is the same.
+
+  `@patricktree/codemod-rewrite-module-specifiers-to-full-paths` additionally drops its unused `@patricktree/commons-ecma` dependency.
+
+- 9183e69: Write a valid base64 `_auth` value into the temporary `.npmrc`. pnpm 11 validates the value and rejected the previous literal placeholder with "[ERROR] Invalid character", which broke every package consumption scenario.
+- Updated dependencies [9183e69]
+  - @patricktree/commons-ecma@3.2.1
+  - @patricktree/commons-node@3.1.3
+
 ## 1.0.7
 
 ### Patch Changes

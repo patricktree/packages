@@ -1,5 +1,22 @@
 # @patricktree/codemod-rewrite-module-specifiers-to-full-paths
 
+## 2.3.0
+
+### Minor Changes
+
+- 087a1ac: Add a `--debug` flag that emits structured diagnostic logs during codemod runs.
+
+### Patch Changes
+
+- 087a1ac: Bump codemod dependencies.
+- 087a1ac: Select the `tsx` parser for `.jsx`/`.tsx` files so JSX sources are rewritten correctly.
+- 9183e69: Build the published output with TypeScript 6 (`@typescript/typescript6`) instead of TypeScript 5.9. The compiler options and the ES2018 target are unchanged, so the emitted API is the same.
+
+  `@patricktree/codemod-rewrite-module-specifiers-to-full-paths` additionally drops its unused `@patricktree/commons-ecma` dependency.
+
+- Updated dependencies [9183e69]
+  - @patricktree/commons-node@3.1.3
+
 ## 2.0.3
 
 ### Patch Changes

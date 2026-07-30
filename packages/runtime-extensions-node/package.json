@@ -1,6 +1,6 @@
 {
   "name": "@patricktree/runtime-extensions-node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/patricktree/packages/tree/main/packages/runtime-extensions-node",
   "bugs": {
     "url": "https://github.com/patricktree/packages/issues"
