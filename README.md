@@ -1,5 +1,14 @@
 # patricktree OSS <!-- omit in toc -->
 
+> **Archived:** This monorepo is no longer maintained. Most of its npm
+> packages are deprecated. Shared code used by Patrick's repositories now
+> lives in [`patricktree-stack`](https://github.com/patricktree/patricktree-stack).
+> The maintained published packages live in the dedicated
+> [`codemod-rewrite-module-specifiers-to-full-paths`](https://github.com/patricktree/codemod-rewrite-module-specifiers-to-full-paths)
+> and
+> [`pkg-consumption-test`](https://github.com/patricktree/pkg-consumption-test)
+> repositories.
+
 - [Development](#development)
   - [Prerequisites](#prerequisites)
   - [Build \& Run](#build--run)
